@@ -22,8 +22,8 @@ const WindowsBase = (props) => {
               "absolute bottom-0 right-0 " + "resizer-" + props.resizer
             }
           ></div>
-          <div className=" w-full h-[38px] bg-lightMode dark:bg-darkMode justify-between flex items-center">
-            <p className="">{props.name}</p>
+          <div className=" w-full h-[30px] bg-lightMode dark:bg-darkMode justify-between flex items-center">
+            <p className="text-[12px] pl-2">{props.name}</p>
             <div className="flex-1 topBar h-full"></div>
             <div className="flex items-center h-full">
               <div className="w-[46px] flex h-full items-center justify-center">
