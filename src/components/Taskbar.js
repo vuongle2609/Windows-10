@@ -6,7 +6,7 @@ const Taskbar = () => {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 h-[40px] bg-lightMode dark:bg-darkMode flex">
+      <div className="fixed bottom-0 left-0 right-0 h-[40px] bg-lightMode dark:bg-darkMode flex z-99999">
         <div
           className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200"
           onClick={setMenuOpen}
@@ -18,6 +18,7 @@ const Taskbar = () => {
         </div> */}
       </div>
       <TaskbarMenu />
+      
     </>
   );
 };
