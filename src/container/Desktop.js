@@ -12,13 +12,6 @@ import Icons from "./Icons";
 import MenuRightClick from "./../components/MenuRightClick";
 
 const Desktop = () => {
-  window.addEventListener("contextmenu", (e) => {
-    e.preventDefault();
-    if (!e.target.classList.contains("icon")) {
-      console.log("menu");
-    }
-  });
-
   const {
     NotePadO,
     ChromeO,
@@ -42,7 +35,8 @@ const Desktop = () => {
       {MangaO ? <Manga /> : false}
       <Icons />
       <Taskbar />
-      <MenuRightClick />;
+      <MenuRightClick />
+      <div className="desktop fixed top-0 bottom-0 left-0 right-0 bg-red-400 -z-[20]"></div>
     </div>
   );
 };

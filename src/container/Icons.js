@@ -40,7 +40,7 @@ const IconBox = (props) => {
 
 const Icons = () => {
   return (
-    <div className="fixed top-0 left-0 h-[95.7%] w-fit -z-10 flex flex-col flex-wrap">
+    <div className="fixed top-0 left-0 h-max-[95.7%] h-fit w-fit -z-10 flex flex-col flex-wrap">
       <IconBox name="NotePad" img={notepad} />
       <IconBox name="Visual Studio Code" img={vscode} />
       <IconBox name="Google Chrome" img={chrome} />
