@@ -1,16 +1,41 @@
 import Draggable from "react-draggable";
 import { Resizable } from "re-resizable";
+import { useState } from "react";
 
 const WindowsBase = (props) => {
+  const [width, setWidth] = useState("100%");
+  const [height, setHeight] = useState("96%");
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [max, setMax] = useState(false);
+
+  const handleMaxSize = () => {
+    setWidth("100%");
+    setHeight("96%");
+    setPosition({ x: 0, y: 0 });
+    setMax(false);
+  };
+
+  const handleScaleSize = () => {
+    setWidth("50%");
+    setHeight("70%");
+    setPosition(null);
+    setMax(true);
+  };
+
   return (
-    <Draggable handle=".topBar">
+    <Draggable handle=".topBar" position={position} >
       <Resizable
         defaultSize={{
-          width: 400,
-          height: 200,
+          width: "100%",
+          height: "96%",
         }}
-        minWidth='400'
-        minHeight='250'
+        minWidth="400"
+        minHeight="250"
+        size={{ width, height }}
+        onResizeStop={(e, direction, ref, d) => {
+          setWidth(width + d.width);
+          setHeight(height + d.height);
+        }}
       >
         <div
           className={
@@ -29,9 +54,27 @@ const WindowsBase = (props) => {
               <div className="w-[46px] flex h-full items-center justify-center">
                 <i className="fa-regular fa-horizontal-rule text-[8px]"></i>
               </div>
-              <div className="w-[46px] flex h-full items-center justify-center">
-                <i className="fa-regular fa-square-full text-[10px]"></i>
-              </div>
+              {!max ? (
+                <div
+                  onClick={handleScaleSize}
+                  className="w-[46px] flex h-full items-center justify-center relative"
+                >
+                  <i className="fa-regular fa-square-full text-[10px]"></i>
+                  <i className="fa-regular fa-square-full text-[10px] absolute top-2 right-4"></i>
+                </div>
+              ) : (
+                false
+              )}
+              {max ? (
+                <div
+                  onClick={handleMaxSize}
+                  className="w-[46px] flex h-full items-center justify-center"
+                >
+                  <i className="fa-regular fa-square-full text-[10px]"></i>
+                </div>
+              ) : (
+                false
+              )}
               <div className="w-[46px] flex h-full items-center justify-center hover:bg-[#e81123] hover:text-white">
                 <i className="fa-regular fa-x text-[12px]"></i>
               </div>
