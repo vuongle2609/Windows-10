@@ -2,9 +2,11 @@ import TaskbarMenu from "./TaskbarMenu";
 import useStore from "../store";
 import chrome from "../assets/icon_windows/chrome.svg";
 import vscode from "../assets/icon_windows/Visual_Studio_Code_1.35_icon.svg";
-import notepad from "../assets/icon_windows/Notepad_Vista_10.png"
+import notepad from "../assets/icon_windows/Notepad_Vista_10.png";
+
 const Taskbar = () => {
-  const { setMenuOpen, menuOpen } = useStore();
+  const { setMenuOpen, menuOpen, setChrome, setNotePad, setVscode, onApp } =
+    useStore();
 
   return (
     <>
@@ -20,16 +22,34 @@ const Taskbar = () => {
         </div> */}
         <div
           className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200 p-2"
+          onClick={() => {
+            if (!onApp) {
+              setChrome(true);
+            }
+            console.log("k");
+          }}
         >
           <img src={chrome} alt="" className="w-full h-full" />
         </div>
         <div
           className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200 p-2"
+          onClick={() => {
+            if (!onApp) {
+              setVscode(true);
+            }
+            console.log("k");
+          }}
         >
           <img src={vscode} alt="" className="w-full h-full" />
         </div>
         <div
           className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200 p-2"
+          onClick={() => {
+            if (!onApp) {
+              setNotePad(true);
+            }
+            console.log("k");
+          }}
         >
           <img src={notepad} alt="" className="w-auto h-full" />
         </div>

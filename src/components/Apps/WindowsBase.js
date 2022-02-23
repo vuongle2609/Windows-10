@@ -1,13 +1,19 @@
 import Draggable from "react-draggable";
 import { Resizable } from "re-resizable";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useStore from "../../store";
 
 const WindowsBase = (props) => {
+  const { onApp, setOnApp } = useStore();
   const [width, setWidth] = useState("100%");
   const [height, setHeight] = useState("96%");
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [max, setMax] = useState(false);
 
+  useEffect(() => {
+    setOnApp(true);
+  }, []);
+  console.log(onApp);
   const handleMaxSize = () => {
     setWidth("100%");
     setHeight("96%");
@@ -23,7 +29,7 @@ const WindowsBase = (props) => {
   };
 
   return (
-    <Draggable handle=".topBar" position={position} >
+    <Draggable handle=".topBar" position={position}>
       <Resizable
         defaultSize={{
           width: "100%",
@@ -75,7 +81,13 @@ const WindowsBase = (props) => {
               ) : (
                 false
               )}
-              <div className="w-[46px] flex h-full items-center justify-center hover:bg-[#e81123] hover:text-white">
+              <div
+                className="w-[46px] flex h-full items-center justify-center hover:bg-[#e81123] hover:text-white"
+                onClick={() => {
+                  props.appClose(false);
+                  setOnApp(false);
+                }}
+              >
                 <i className="fa-regular fa-x text-[12px]"></i>
               </div>
             </div>

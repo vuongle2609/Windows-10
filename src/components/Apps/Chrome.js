@@ -1,8 +1,13 @@
 import WindowsBase from "./WindowsBase";
+import useStore from "../../store";
 
 const NotePad = () => {
+  const {
+    setChrome
+  } = useStore();
+  
   return (
-    <WindowsBase name="Chrome" resizer="chrome">
+    <WindowsBase name="Chrome" resizer="chrome" appClose={setChrome}>
       <div className="w-full h-full bg-white flex flex-col">
         <div className="border-b-[1px] border-gray-300 flex items-center py-1 px-2">
           <i className="fa-regular fa-arrow-left px-2 "></i>
