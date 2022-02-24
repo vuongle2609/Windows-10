@@ -7,6 +7,7 @@ import Krunker from "../components/Apps/Krunker";
 import Minecraft from "../components/Apps/Minecraft";
 import Anime from "../components/Apps/Anime";
 import Manga from "../components/Apps/Manga";
+import Yugioh from "../components/Apps/Yugioh";
 import useStore from "../store";
 import Icons from "./Icons";
 import MenuRightClick from "./../components/MenuRightClick";
@@ -21,6 +22,7 @@ const Desktop = () => {
     MinecraftO,
     AnimeO,
     MangaO,
+    YugiohO
   } = useStore();
 
   return (
@@ -33,6 +35,7 @@ const Desktop = () => {
       {MinecraftO ? <Minecraft /> : false}
       {AnimeO ? <Anime /> : false}
       {MangaO ? <Manga /> : false}
+      {YugiohO ? <Yugioh /> : false}
       <Icons />
       <Taskbar />
       <MenuRightClick />

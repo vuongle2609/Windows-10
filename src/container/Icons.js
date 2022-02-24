@@ -6,6 +6,7 @@ import krunker from "../assets/icon_windows/Trigger.PNG.png";
 import minecraft from "../assets/icon_windows/minecraft-1.svg";
 import movie from "../assets/icon_windows/icon-for-movie-1.jpg";
 import manga from "../assets/icon_windows/manga-icon-0.jpg";
+import yugioh from "../assets/icon_windows/yugioh.jpg";
 
 const IconBox = (props) => {
   const { icon, onApp } = useStore();
@@ -57,8 +58,8 @@ const IconBox = (props) => {
 };
 
 const Icons = () => {
-  const { showIcon } = useStore();
   const {
+    showIcon,
     setNotePad,
     setChrome,
     setVscode,
@@ -66,6 +67,7 @@ const Icons = () => {
     setMinecraft,
     setAnime,
     setManga,
+    setYugioh,
   } = useStore();
 
   return showIcon ? (
@@ -117,6 +119,13 @@ const Icons = () => {
         img={manga}
         func={() => {
           setManga(true);
+        }}
+      />
+      <IconBox
+        name="Yugioh Nexus"
+        img={yugioh}
+        func={() => {
+          setYugioh(true);
         }}
       />
     </div>

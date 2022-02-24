@@ -38,6 +38,12 @@ const useStore = create((set) => ({
   MinecraftO: false,
   AnimeO: false,
   MangaO: false,
+  YugiohO: false,
+  setYugioh: (bol) => {
+    set(() => ({
+      YugiohO: bol,
+    }));
+  },
   setNotePad: (bol) => {
     set(() => ({
       NotePadO: bol,

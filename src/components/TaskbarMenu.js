@@ -3,7 +3,7 @@ import useStore from "../store";
 const TaskbarMenuItem = ({ icon }) => {
   return (
     <div className="w-full h-[48px] flex items-center justify-center">
-      <i class={`fa-regular fa-${icon}`}></i>
+      <i class={`fa-thin fa-${icon} font-light text-[16px]`}></i>
     </div>
   );
 };
@@ -13,11 +13,11 @@ const TaskbarMenu = () => {
   return (
     <div
       className={
-        `fixed left-0 h-1/2 flex bottom-[40px] origin-bottom-left duration-150 ` +
-        (menuOpen ? " scale-100" : " scale-0")
+        `fixed left-0 h-1/2 flex origin-bottom-left duration-[160ms] ` +
+        (menuOpen ? " bottom-[40px]" : " -bottom-full")
       }
     >
-      <div className="w-[48px] h-full bg-lightMode flex flex-col justify-between">
+      <div className="w-[48px] h-full bg-[#e4e4e4] flex flex-col justify-between">
         <div>
           <TaskbarMenuItem icon="bars" />
         </div>
@@ -29,7 +29,7 @@ const TaskbarMenu = () => {
           <TaskbarMenuItem icon="power-off" />
         </div>
       </div>
-      <div className="w-[274px] h-full bg-lightMode"></div>
+      <div className="w-[274px] h-full bg-[#e4e4e4]"></div>
     </div>
   );
 };
