@@ -4,15 +4,17 @@ import { useState, useEffect } from "react";
 import useStore from "../../store";
 
 const WindowsBase = (props) => {
-  const { onApp, setOnApp } = useStore();
+  const { onApp, setOnApp, appN, setAppN } = useStore();
   const [width, setWidth] = useState("100%");
-  const [height, setHeight] = useState("96%");
+  const [height, setHeight] = useState("96.02%");
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [max, setMax] = useState(false);
 
   useEffect(() => {
     setOnApp(true);
+    setAppN(props.num);
   }, []);
+  
   const handleMaxSize = () => {
     setWidth("100%");
     setHeight("96%");
@@ -27,12 +29,16 @@ const WindowsBase = (props) => {
     setMax(true);
   };
 
+  const handleMinimize = () => {
+    document.querySelector(".react-draggable").classList.add("hidden");
+  };
+
   return (
     <Draggable handle=".topBar" position={position}>
       <Resizable
         defaultSize={{
           width: "100%",
-          height: "96%",
+          height: "97%",
         }}
         minWidth="400"
         minHeight="250"
@@ -56,7 +62,12 @@ const WindowsBase = (props) => {
             <p className="text-[12px] pl-2">{props.name}</p>
             <div className="flex-1 topBar h-full"></div>
             <div className="flex items-center h-full">
-              <div className="w-[46px] flex h-full items-center justify-center">
+              <div
+                className="w-[46px] flex h-full items-center justify-center"
+                onClick={() => {
+                  handleMinimize();
+                }}
+              >
                 <i className="fa-regular fa-horizontal-rule text-[8px]"></i>
               </div>
               {!max ? (
@@ -83,6 +94,7 @@ const WindowsBase = (props) => {
               <div
                 className="w-[46px] flex h-full items-center justify-center hover:bg-[#e81123] hover:text-white"
                 onClick={() => {
+                  setAppN(null);
                   props.appClose(false);
                   setOnApp(false);
                 }}

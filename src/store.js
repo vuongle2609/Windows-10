@@ -14,6 +14,12 @@ const useStore = create((set) => ({
       onApp: bol,
     }));
   },
+  appN: null,
+  setAppN: (num) => {
+    set(() => ({
+      appN: num,
+    }));
+  },
   icon: 0,
   setIcon: (icon) => {
     set(() => ({ icon: icon }));

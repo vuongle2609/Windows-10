@@ -5,7 +5,7 @@ const Anime = () => {
   const { setAnime } = useStore();
 
   return (
-    <WindowsBase name="Anime" resizer="anime" appClose={setAnime}>
+    <WindowsBase name="Anime" resizer="anime" appClose={setAnime} num={5}>
       <div className="w-full h-full bg-white flex flex-col">
         <div className="w-full flex-1 bg-red-200">
           <iframe

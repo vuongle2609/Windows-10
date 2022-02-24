@@ -7,7 +7,7 @@ const NotePad = () => {
   } = useStore();
   
   return (
-    <WindowsBase name="Chrome" resizer="chrome" appClose={setChrome}>
+    <WindowsBase name="Chrome" resizer="chrome" appClose={setChrome} num={0}>
       <div className="w-full h-full bg-white flex flex-col">
         <div className="border-b-[1px] border-gray-300 flex items-center py-1 px-2">
           <i className="fa-regular fa-arrow-left px-2 "></i>

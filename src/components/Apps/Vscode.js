@@ -5,7 +5,7 @@ const Vscode = () => {
   const { setVscode } = useStore();
 
   return (
-    <WindowsBase name="Visual Studio Code" resizer="vscode" appClose={setVscode}>
+    <WindowsBase name="Visual Studio Code" resizer="vscode" appClose={setVscode} num={1}>
       <iframe
         src="https://vscode.dev/"
         allowfullscreen

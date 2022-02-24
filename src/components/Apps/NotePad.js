@@ -9,6 +9,7 @@ const NotePad = () => {
       name="Untitled - Notepad"
       resizer="notePad"
       appClose={setNotePad}
+      num={2}
     >
       <div className="w-full h-full bg-white flex flex-col">
         <div className="border-b-[1px] border-black flex text-[12px] h-[20px]">

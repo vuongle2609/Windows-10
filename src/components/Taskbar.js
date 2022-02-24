@@ -3,10 +3,27 @@ import useStore from "../store";
 import chrome from "../assets/icon_windows/chrome.svg";
 import vscode from "../assets/icon_windows/Visual_Studio_Code_1.35_icon.svg";
 import notepad from "../assets/icon_windows/Notepad_Vista_10.png";
+import krunker from "../assets/icon_windows/Trigger.PNG.png";
+import minecraft from "../assets/icon_windows/minecraft-1.svg";
+import movie from "../assets/icon_windows/icon-for-movie-1.jpg";
+import manga from "../assets/icon_windows/manga-icon-0.jpg";
 
 const Taskbar = () => {
-  const { setMenuOpen, menuOpen, setChrome, setNotePad, setVscode, onApp } =
-    useStore();
+  const { setMenuOpen, appN } = useStore();
+
+  const iconArr = [chrome, vscode, notepad, krunker, minecraft, movie, manga];
+
+  const handleMinimize = () => {
+    const window = document.querySelector(".react-draggable");
+
+    const isMinimize = window.classList.contains("hidden");
+
+    if (isMinimize) {
+      window.classList.remove("hidden");
+      return;
+    }
+    window.classList.add("hidden");
+  };
 
   return (
     <>
@@ -20,39 +37,17 @@ const Taskbar = () => {
         {/* <div className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200">
           <i class="fa-regular fa-magnifying-glass reve"></i>
         </div> */}
-        <div
-          className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200 p-2"
-          onClick={() => {
-            if (!onApp) {
-              setChrome(true);
-            }
-            console.log("k");
-          }}
-        >
-          <img src={chrome} alt="" className="w-full h-full" />
-        </div>
-        <div
-          className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200 p-2"
-          onClick={() => {
-            if (!onApp) {
-              setVscode(true);
-            }
-            console.log("k");
-          }}
-        >
-          <img src={vscode} alt="" className="w-full h-full" />
-        </div>
-        <div
-          className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200 p-2"
-          onClick={() => {
-            if (!onApp) {
-              setNotePad(true);
-            }
-            console.log("k");
-          }}
-        >
-          <img src={notepad} alt="" className="w-auto h-full" />
-        </div>
+
+        {appN || appN === 0 ? (
+          <div
+            className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200 p-2"
+            onClick={handleMinimize}
+          >
+            <img src={iconArr[appN]} alt="" className="w-full h-full" />
+          </div>
+        ) : (
+          false
+        )}
       </div>
       <TaskbarMenu />
     </>
