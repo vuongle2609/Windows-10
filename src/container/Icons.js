@@ -8,11 +8,26 @@ import movie from "../assets/icon_windows/icon-for-movie-1.jpg";
 import manga from "../assets/icon_windows/manga-icon-0.jpg";
 
 const IconBox = (props) => {
-  const { icon } = useStore();
+  const { icon, onApp } = useStore();
 
   let iconSize;
   let imgSize;
   let textSize;
+
+  let count = 0;
+  const handleOpenApp = () => {
+    count += 1;
+
+    if (count === 2) {
+      if (!onApp) {
+        props.func();
+      }
+    }
+
+    setTimeout(() => {
+      count -= 1;
+    }, 500);
+  };
 
   if (icon === 0) {
     iconSize = " w-[75px] mb-2 mt-2";
@@ -29,7 +44,10 @@ const IconBox = (props) => {
   }
 
   return (
-    <div className={"flex flex-col items-center icon" + iconSize}>
+    <div
+      className={"flex flex-col items-center icon" + iconSize}
+      onClick={handleOpenApp}
+    >
       <img src={props.img} alt="" className={"icon " + imgSize} />
       <p className={"icon text-center text-white text-shadow " + textSize}>
         {props.name}
@@ -40,16 +58,67 @@ const IconBox = (props) => {
 
 const Icons = () => {
   const { showIcon } = useStore();
+  const {
+    setNotePad,
+    setChrome,
+    setVscode,
+    setKrunker,
+    setMinecraft,
+    setAnime,
+    setManga,
+  } = useStore();
 
   return showIcon ? (
     <div className="fixed top-0 left-0 h-[97%] w-fit -z-10 flex flex-col flex-wrap">
-      <IconBox name="NotePad" img={notepad} />
-      <IconBox name="Visual Studio Code" img={vscode} />
-      <IconBox name="Google Chrome" img={chrome} />
-      <IconBox name="Krunker" img={krunker} />
-      <IconBox name="Minecraft" img={minecraft} />
-      <IconBox name="Anime" img={movie} />
-      <IconBox name="Manga" img={manga} />
+      <IconBox
+        name="NotePad"
+        img={notepad}
+        func={() => {
+          setNotePad(true);
+        }}
+      />
+      <IconBox
+        name="Visual Studio Code"
+        img={vscode}
+        func={() => {
+          setVscode(true);
+        }}
+      />
+      <IconBox
+        name="Google Chrome"
+        img={chrome}
+        func={() => {
+          setChrome(true);
+        }}
+      />
+      <IconBox
+        name="Krunker"
+        img={krunker}
+        func={() => {
+          setKrunker(true);
+        }}
+      />
+      <IconBox
+        name="Minecraft"
+        img={minecraft}
+        func={() => {
+          setMinecraft(true);
+        }}
+      />
+      <IconBox
+        name="Anime"
+        img={movie}
+        func={() => {
+          setAnime(true);
+        }}
+      />
+      <IconBox
+        name="Manga"
+        img={manga}
+        func={() => {
+          setManga(true);
+        }}
+      />
     </div>
   ) : (
     false
