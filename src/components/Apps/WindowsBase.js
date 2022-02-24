@@ -13,7 +13,6 @@ const WindowsBase = (props) => {
   useEffect(() => {
     setOnApp(true);
   }, []);
-  console.log(onApp);
   const handleMaxSize = () => {
     setWidth("100%");
     setHeight("96%");
@@ -38,7 +37,7 @@ const WindowsBase = (props) => {
         minWidth="400"
         minHeight="250"
         size={{ width, height }}
-        onResizeStop={(e, direction, ref, d) => {
+        onResizeStop={(d) => {
           setWidth(width + d.width);
           setHeight(height + d.height);
         }}

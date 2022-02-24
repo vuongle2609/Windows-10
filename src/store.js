@@ -18,6 +18,12 @@ const useStore = create((set) => ({
   setIcon: (icon) => {
     set(() => ({ icon: icon }));
   },
+  showIcon: true,
+  setShowIcon: () => {
+    set((state) => ({
+      showIcon: !state.showIcon,
+    }));
+  },
   NotePadO: false,
   ChromeO: false,
   VscodeO: false,

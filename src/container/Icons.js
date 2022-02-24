@@ -39,8 +39,10 @@ const IconBox = (props) => {
 };
 
 const Icons = () => {
-  return (
-    <div className="fixed top-0 left-0 h-max-[95.7%] h-fit w-fit -z-10 flex flex-col flex-wrap">
+  const { showIcon } = useStore();
+
+  return showIcon ? (
+    <div className="fixed top-0 left-0 h-[97%] w-fit -z-10 flex flex-col flex-wrap">
       <IconBox name="NotePad" img={notepad} />
       <IconBox name="Visual Studio Code" img={vscode} />
       <IconBox name="Google Chrome" img={chrome} />
@@ -49,6 +51,8 @@ const Icons = () => {
       <IconBox name="Anime" img={movie} />
       <IconBox name="Manga" img={manga} />
     </div>
+  ) : (
+    false
   );
 };
 
