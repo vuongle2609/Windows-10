@@ -20,7 +20,7 @@ import { onResize } from "react-draggable";
 
 const SettingItem = (props) => {
   return (
-    <div className={"col " + props.size}>
+    <div className={"mb-5 col " + props.size}>
       <div className="w-full flex">
         <img src={props.img} alt="" className="" />
         <div className="flex-1 flex flex-col">
@@ -36,12 +36,20 @@ const Settings = () => {
   const { setSettings, setWallpaper } = useStore();
   const [size, setSize] = useState("res-1");
 
-
+  const myObserver = new ResizeObserver((entries) => {
+    const size = entries[0].contentRect.width;
+    if (size < 767) {
+      setSize("res-3");
+    } else if (size < 1023) {
+      setSize("res-2");
+    } else {
+      setSize("res-1");
+    }
+  });
 
   useEffect(() => {
-    const container = document.querySelector(".settings_container");
-
-    console.dir(container.clientWidth);
+    const someEl = document.querySelector(".settings_container");
+    myObserver.observe(someEl);
   }, []);
 
   return (
