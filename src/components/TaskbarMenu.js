@@ -1,19 +1,22 @@
 import useStore from "../store";
 
-const TaskbarMenuItem = ({ icon }) => {
+const TaskbarMenuItem = ({ icon, func }) => {
   return (
-    <div className="w-full h-[48px] flex items-center justify-center">
+    <div
+      className="w-full h-[48px] flex items-center justify-center"
+      onClick={func}
+    >
       <i class={`fa-thin fa-${icon} font-light text-[16px]`}></i>
     </div>
   );
 };
 
 const TaskbarMenu = () => {
-  const { menuOpen } = useStore();
+  const { menuOpen, setSettings } = useStore();
   return (
     <div
       className={
-        `fixed left-0 h-1/2 flex origin-bottom-left duration-[160ms] ` +
+        `fixed left-0 h-1/2 flex origin-bottom-left duration-[160ms] z-[999]` +
         (menuOpen ? " bottom-[40px]" : " -bottom-full")
       }
     >
@@ -25,7 +28,7 @@ const TaskbarMenu = () => {
           <TaskbarMenuItem icon="user" />
           <TaskbarMenuItem icon="file" />
           <TaskbarMenuItem icon="image" />
-          <TaskbarMenuItem icon="gear" />
+          <TaskbarMenuItem icon="gear" func={() => setSettings(true)} />
           <TaskbarMenuItem icon="power-off" />
         </div>
       </div>

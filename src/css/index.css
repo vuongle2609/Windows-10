@@ -17,5 +17,24 @@
       1px -1px 0 rgba(0, 0, 0, 0.5), -1px 1px 0 rgba(0, 0, 0, 0.5);
   }
 
+  .col {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .res-1 {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+
+  .res-2 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+
+  .res-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 @tailwind utilities;

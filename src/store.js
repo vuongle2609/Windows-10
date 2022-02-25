@@ -84,6 +84,10 @@ const useStore = create((set) => ({
       MangaO: bol,
     }));
   },
+  wallpaper: 1,
+  setWallpaper: (num) => {
+    set(() => ({ wallpaper: num }));
+  },
 }));
 
 export default useStore;

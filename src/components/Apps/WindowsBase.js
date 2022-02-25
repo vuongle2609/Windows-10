@@ -14,7 +14,7 @@ const WindowsBase = (props) => {
     setOnApp(true);
     setAppN(props.num);
   }, []);
-  
+
   const handleMaxSize = () => {
     setWidth("100%");
     setHeight("96%");

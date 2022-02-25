@@ -8,11 +8,14 @@ import minecraft from "../assets/icon_windows/minecraft-1.svg";
 import movie from "../assets/icon_windows/icon-for-movie-1.jpg";
 import manga from "../assets/icon_windows/manga-icon-0.jpg";
 import yugioh from "../assets/icon_windows/yugioh.jpg";
+import setting from "../assets/icon_windows/setting.svg";
 
 import notif from "../assets/tray_icons/notif.svg";
 import arrow from "../assets/tray_icons/arrow.svg";
 import baterry from "../assets/tray_icons/baterry.svg";
 import wifi from "../assets/tray_icons/wifi.svg";
+
+import { useState } from "react";
 
 const TrayIcon = (props) => {
   return (
@@ -22,13 +25,19 @@ const TrayIcon = (props) => {
   );
 };
 
-const TrayClock = (props) => {
+const TrayClock = () => {
+  const [render, setRender] = useState(false);
+
+  setInterval(() => {
+    setRender(!render);
+  }, 1000);
+
   const time = new Date();
 
   const minutes = time.getMinutes();
   const hour = time.getHours();
   var year = time.getFullYear();
-  var month = time.getMonth(); // beware: January = 0; February = 1, etc.
+  var month = time.getMonth();
   var day = time.getDate();
 
   return (
@@ -56,6 +65,7 @@ const Taskbar = () => {
     movie,
     manga,
     yugioh,
+    setting
   ];
 
   const handleMinimize = () => {
@@ -72,7 +82,7 @@ const Taskbar = () => {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 h-[40px] bg-[#eeeeee] dark:bg-darkMode flex z-99999 justify-between items-center">
+      <div className="fixed bottom-0 left-0 right-0 h-[40px] bg-[#eeeeee] dark:bg-darkMode flex z-[99999] justify-between items-center">
         <div className="flex">
           <div
             className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200"

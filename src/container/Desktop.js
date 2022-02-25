@@ -12,8 +12,17 @@ import useStore from "../store";
 import Icons from "./Icons";
 import MenuRightClick from "./../components/MenuRightClick";
 
+// import wpp0 from "../assets/windows_wallpaper/img0.jpg";
+// import wpp1 from "../assets/windows_wallpaper/img1.jpg";
+// import wpp2 from "../assets/windows_wallpaper/img2.jpg";
+// import wpp3 from "../assets/windows_wallpaper/img3.jpg";
+// import wpp4 from "../assets/windows_wallpaper/img4.jpg";
+
+// const wppArr = [wpp0, wpp1, wpp2, wpp3, wpp4];
+
 const Desktop = () => {
   const {
+    wallpaper,
     NotePadO,
     ChromeO,
     VscodeO,
@@ -22,15 +31,21 @@ const Desktop = () => {
     MinecraftO,
     AnimeO,
     MangaO,
-    YugiohO
+    YugiohO,
   } = useStore();
 
   return (
-    <div className="fixed top-0 bottom-0 left-0 right-0 bg-red-200 select-none">
+    <div
+      className="fixed top-0 bottom-0 left-0 right-0 select-none bg-cover bg-center bg-red-200"
+      // style={{
+      //   backgroundImage: `url(${wppArr[wallpaper]})`,
+      // }}
+    >
       {NotePadO ? <NotePad /> : false}
       {ChromeO ? <Chrome /> : false}
       {VscodeO ? <Vscode /> : false}
       {SettingsO ? <Settings /> : false}
+      <Settings />
       {KrunkerO ? <Krunker /> : false}
       {MinecraftO ? <Minecraft /> : false}
       {AnimeO ? <Anime /> : false}
@@ -39,7 +54,7 @@ const Desktop = () => {
       <Icons />
       <Taskbar />
       <MenuRightClick />
-      <div className="desktop fixed top-0 bottom-0 left-0 right-0 bg-red-400 -z-[20]"></div>
+      <div className="desktop fixed top-0 bottom-0 left-0 right-0 -z-[20]"></div>
     </div>
   );
 };
