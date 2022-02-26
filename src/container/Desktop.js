@@ -45,7 +45,6 @@ const Desktop = () => {
       {ChromeO ? <Chrome /> : false}
       {VscodeO ? <Vscode /> : false}
       {SettingsO ? <Settings /> : false}
-      <Settings />
       {KrunkerO ? <Krunker /> : false}
       {MinecraftO ? <Minecraft /> : false}
       {AnimeO ? <Anime /> : false}
