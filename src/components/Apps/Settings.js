@@ -20,13 +20,15 @@ import icon13 from "../../assets/settings_icons/update.svg";
 const SettingItem = (props) => {
   return (
     <div className={"mb-14 col " + props.size}>
-      <div className="w-full flex">
-        <img src={props.img} alt="" className="mr-5" />
-        <div className="flex-1 flex flex-col">
-          <h3 className="text-base">{props.name}</h3>
-          <p className="text-sm text-[#666666]">{props.detail}</p>
-        </div>
-      </div>{" "}
+      <Link to={props.link}>
+        <div className="w-full flex">
+          <img src={props.img} alt="" className="mr-5" />
+          <div className="flex-1 flex flex-col">
+            <h3 className="text-base">{props.name}</h3>
+            <p className="text-sm text-[#666666]">{props.detail}</p>
+          </div>
+        </div>{" "}
+      </Link>
     </div>
   );
 };
@@ -81,6 +83,7 @@ const Menu = () => {
         </div>
         <div className="row settings_container">
           <SettingItem
+            link="/"
             img={icon1}
             name="System"
             detail="Display, sound, notifications,
@@ -88,18 +91,21 @@ const Menu = () => {
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon2}
             name="Devices"
             detail="Bluetooth, printers, mouse"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon3}
             name="Phone"
             detail="Link your Android, Phone"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon4}
             name="Network & Internet"
             detail="Wi-Fi, airplane mode, VPN"
@@ -108,10 +114,12 @@ const Menu = () => {
           <SettingItem
             img={icon5}
             name="Personalization"
+            link="/personalize"
             detail="Background, lock screen, colors"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon6}
             name="Apps"
             detail="Uninstall, defaults, optional
@@ -119,6 +127,7 @@ features"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon7}
             name="Accounts"
             detail="Your accounts, email, sync,
@@ -126,12 +135,14 @@ features"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon8}
             name="Time & Language"
             detail="Speech, region, date"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon9}
             name="Gaming"
             detail="Xbox Game Bar, captures, Game
@@ -139,6 +150,7 @@ features"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon10}
             name="Ease of Access"
             detail="Narrator, magnifier, high
@@ -146,6 +158,7 @@ features"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon11}
             name="Search"
             detail="
@@ -153,12 +166,14 @@ features"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon12}
             name="Privacy"
             detail="Location, camera, microphone"
             size={size}
           />
           <SettingItem
+            link="/"
             img={icon13}
             name="Update & Security"
             detail="
@@ -172,6 +187,21 @@ features"
   );
 };
 
+const PersonalizationSetting = (props) => {
+  return (
+    <div className="grid">
+      <div className="row">
+        <div className="col c-4 bg-red-200 h-full">
+          
+        </div>
+        <div className="col c-8 bg-blue-200 h-full">
+          
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const Settings = () => {
   const { setSettings, setWallpaper } = useStore();
 
@@ -184,7 +214,8 @@ const Settings = () => {
     >
       <div className="bg-white w-full h-full">
         <Routes>
-          <Route element={<Menu />} index/>
+          <Route path="/" element={<Menu />} index />
+          <Route path="/personalize" element={<PersonalizationSetting />} />
         </Routes>
       </div>
     </WindowsBase>
