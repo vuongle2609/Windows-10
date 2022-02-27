@@ -5,6 +5,7 @@ module.exports = {
       colors: {
         darkMode: "#00081e",
         lightMode: "#d6e3eb",
+        filterWhite: "rgba(255, 255, 255, 0.6)",
       },
     },
   },

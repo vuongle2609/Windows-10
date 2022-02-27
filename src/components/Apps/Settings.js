@@ -1,6 +1,5 @@
 import WindowsBase from "./WindowsBase";
 import useStore from "../../store";
-import { Routes, Route, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import icon1 from "../../assets/settings_icons/system.svg";
@@ -17,18 +16,36 @@ import icon11 from "../../assets/settings_icons/search.svg";
 import icon12 from "../../assets/settings_icons/security.svg";
 import icon13 from "../../assets/settings_icons/update.svg";
 
+import home from "../../assets/settings_icons/p-setting/home.svg";
+import background from "../../assets/settings_icons/p-setting/background.svg";
+import color from "../../assets/settings_icons/p-setting/color.svg";
+import font from "../../assets/settings_icons/p-setting/font.svg";
+import lock from "../../assets/settings_icons/p-setting/lock.svg";
+import theme from "../../assets/settings_icons/p-setting/theme.svg";
+import start from "../../assets/settings_icons/p-setting/start.svg";
+import taskbar from "../../assets/settings_icons/p-setting/taskbar.svg";
+import corner from "../../assets/settings_icons/p-setting/windows_corner.png";
+
+import wpp0 from "../../assets/windows_wallpaper/img0.jpg";
+import wpp1 from "../../assets/windows_wallpaper/img1.jpg";
+import wpp2 from "../../assets/windows_wallpaper/img2.jpg";
+import wpp3 from "../../assets/windows_wallpaper/img3.jpg";
+import wpp4 from "../../assets/windows_wallpaper/img4.jpg";
+
+import { HexColorPicker } from "react-colorful";
+
+const wppArr = [wpp0, wpp1, wpp2, wpp3, wpp4];
+
 const SettingItem = (props) => {
   return (
     <div className={"mb-14 col " + props.size}>
-      <Link to={props.link}>
-        <div className="w-full flex">
-          <img src={props.img} alt="" className="mr-5" />
-          <div className="flex-1 flex flex-col">
-            <h3 className="text-base">{props.name}</h3>
-            <p className="text-sm text-[#666666]">{props.detail}</p>
-          </div>
-        </div>{" "}
-      </Link>
+      <div className="w-full flex">
+        <img src={props.img} alt="" className="mr-5" />
+        <div className="flex-1 flex flex-col">
+          <h3 className="text-base">{props.name}</h3>
+          <p className="text-sm text-[#666666]">{props.detail}</p>
+        </div>
+      </div>{" "}
     </div>
   );
 };
@@ -81,9 +98,8 @@ const Menu = () => {
             </div>
           </div>
         </div>
-        <div className="row settings_container">
+        <div className="row settings_container max-h-[360px] overflow-scroll overflow-x-hidden">
           <SettingItem
-            link="/"
             img={icon1}
             name="System"
             detail="Display, sound, notifications,
@@ -91,21 +107,18 @@ const Menu = () => {
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon2}
             name="Devices"
             detail="Bluetooth, printers, mouse"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon3}
             name="Phone"
             detail="Link your Android, Phone"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon4}
             name="Network & Internet"
             detail="Wi-Fi, airplane mode, VPN"
@@ -114,12 +127,10 @@ const Menu = () => {
           <SettingItem
             img={icon5}
             name="Personalization"
-            link="/personalize"
             detail="Background, lock screen, colors"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon6}
             name="Apps"
             detail="Uninstall, defaults, optional
@@ -127,7 +138,6 @@ features"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon7}
             name="Accounts"
             detail="Your accounts, email, sync,
@@ -135,14 +145,12 @@ features"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon8}
             name="Time & Language"
             detail="Speech, region, date"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon9}
             name="Gaming"
             detail="Xbox Game Bar, captures, Game
@@ -150,7 +158,6 @@ features"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon10}
             name="Ease of Access"
             detail="Narrator, magnifier, high
@@ -158,7 +165,6 @@ features"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon11}
             name="Search"
             detail="
@@ -166,14 +172,12 @@ features"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon12}
             name="Privacy"
             detail="Location, camera, microphone"
             size={size}
           />
           <SettingItem
-            link="/"
             img={icon13}
             name="Update & Security"
             detail="
@@ -187,23 +191,258 @@ features"
   );
 };
 
-const PersonalizationSetting = (props) => {
+const DropdownSelector = ({ label, choices }) => {
+  const [isDrop, setIsDrop] = useState(false);
+  const [choice, setChoice] = useState(choices[0].name);
+
   return (
-    <div className="grid">
-      <div className="row">
-        <div className="col c-4 bg-red-200 h-full">
-          
+    <div className="mt-14">
+      <h3 className="text-xs block mb-[6px]">{label}</h3>
+      <div className="relative w-[280px]">
+        <div
+          className="border-[2px] border-[#999999] hover:border-[#666666] px-2 py-[4px]"
+          onClick={() => setIsDrop(true)}
+        >
+          <p className="text-[13px] font-medium">{choice}</p>
+          <i class="fa-thin fa-angle-down absolute top-[50%] -translate-y-[50%] right-2"></i>
         </div>
-        <div className="col c-8 bg-blue-200 h-full">
-          
+        {isDrop ? (
+          <ul className="absolute w-full left-0 top-0 bg-[#f2f2f2] py-1 border-[1px] border-[#999999]">
+            {choices.map((choice, index) => (
+              <li
+                className="px-2 py-[4px] text-[13px] font-medium hover:bg-[#dadada]"
+                key={index}
+                onClick={() => {
+                  choice.func();
+                  setIsDrop(false);
+                  setChoice(choices[index].name);
+                }}
+              >
+                {choice.name}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          false
+        )}
+      </div>
+    </div>
+  );
+};
+
+const SettingSelect = (props) => {
+  return (
+    <div className="flex text-[13px] px-4 py-[12px] hover:bg-[#cfcfcf]">
+      <img src={props.icon} alt="" className="mr-3 scale-[98%]" />
+      <p>{props.name}</p>
+    </div>
+  );
+};
+
+const ImagePicker = () => {
+  const { setWallpaper, setPreWallpaper } = useStore();
+
+  return (
+    <div>
+      <h3 className="text-xs block mb-[6px]">Choose your picture</h3>
+      <div className="mt-2 flex">
+        {wppArr.map((wpp, index) => (
+          <div
+            style={{ backgroundImage: `url(${wpp})` }}
+            className="w-[64px] h-[64px] mr-1 bg-center bg-cover"
+            onClick={() => {
+              setWallpaper(index);
+              setPreWallpaper(index);
+            }}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ColorPicker = (props) => {
+  const { BColor, setBColor } = useStore();
+
+  const colorArr = [
+    "#ff8c00",
+    "#e81123",
+    "#d13438",
+    "#c30052",
+    "#bf0077",
+    "#9a0089",
+    "#881798",
+    "#744da9",
+    "#10893e",
+    "#107c10",
+    "#018574",
+    "#2d7d9a",
+    "#0063b1",
+    "#6b69d6",
+    "#8e8cd8",
+    "#8764b8",
+    "#038387",
+    "#486860",
+    "#525e54",
+    "#7e735f",
+    "#4c4a48",
+    "#515c6b",
+    "#4a5459",
+    "#000000",
+  ];
+  return (
+    <div>
+      <h3 className="text-xs block mb-[6px]">Choose your background color</h3>
+      <div className="mt-2 flex w-[338px] flex-wrap">
+        {colorArr.map((color, index) => (
+          <div
+            key={index}
+            className={"basis-[12.5%] w-[12.5%] pr-[2px] pb-[2px] relative"}
+          >
+            <div
+              className="pt-[100%] "
+              style={{ backgroundColor: color }}
+              onClick={() => setBColor(color)}
+            ></div>
+            {color === BColor ? (
+              <span className="block absolute -top-[1px] -left-[1px] w-[99%] h-[99%] border-[3px] border-black">
+                <span className="flex items-center justify-center w-1/2 h-1/2 absolute -top-[1px] -right-[1px] bg-black">
+                  <i class="text-white fa-thin fa-check text-xs"></i>
+                </span>
+              </span>
+            ) : (
+              false
+            )}
+          </div>
+        ))}
+      </div>
+      <div
+        onClick={() => {
+          console.log("thang ngu");
+          props.setColorTable(true);
+        }}
+        className="flex hover:bg-[#f2f2f2] w-[362px] p-2 mt-4 relative right-[8px]"
+      >
+        <span className="mr-2 bg-[#cccccc] flex items-center justify-center w-[36px] h-[36px]">
+          <i class="fa-regular fa-plus"></i>
+        </span>
+        <p className="text-xs">Custom color</p>
+      </div>
+    </div>
+  );
+};
+
+const ColorTable = (props) => {
+  const { BColor, setBColor } = useStore();
+  const [color, setColor] = useState(BColor);
+
+  return (
+    <div className="absolute top-0 left-0 w-full h-full bg-filterWhite flex items-center justify-center">
+      <div className="w-[330px] p-[18px] border-[1px] border-[#cccccc] bg-white">
+        <h3 className="block pb-3 text-lg">Pick a background color</h3>
+        <div className="flex h-fit">
+          <section className="hexcolor-small">
+            <HexColorPicker color={BColor} onChange={setColor} />
+          </section>
+          <div
+            className="ml-3 flex-1 h-[250px] "
+            style={{ backgroundColor: color }}
+          ></div>
+        </div>
+        <div className="w-full flex mt-5">
+          <div
+            onClick={() => {
+              setBColor(color);
+              props.setColorTable(false);
+            }}
+            className="basis-[50%] h-[30px] bg-[#cccccc] text-xs flex items-center justify-center mr-1"
+          >
+            Done
+          </div>
+          <div
+            onClick={() => props.setColorTable(false)}
+            className="basis-[50%] h-[30px] bg-[#cccccc] text-xs flex items-center justify-center ml-1"
+          >
+            Cancel
+          </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+const PersonalizationSetting = (props) => {
+  const { wallpaper, setWallpaper, BColor, preWallpaper } = useStore();
+
+  return (
+    <div className="w-full h-full flex">
+      <div className="flex flex-1">
+        <div className="w-[287px] h-auto bg-[#e6e6e6]">
+          <SettingSelect icon={home} name="Home" />
+          <div className="relative w-full px-4 mt-2">
+            <input
+              type="text"
+              className="w-full h-7 border-black border-[1px] outline-red-200 pr-12 pl-3 search_box text-sm bg-[#f0f0f0] focus:bg-white"
+              placeholder="Find a setting"
+            />
+            <i class="fa-thin fa-magnifying-glass absolute right-7 top-[50%] -translate-y-[50%] text-xs"></i>
+          </div>
+          <h4 className="font-bold px-4 text-xs py-6">Personalization</h4>
+          <SettingSelect icon={background} name="Background" />
+          <SettingSelect icon={color} name="Colors" />
+          <SettingSelect icon={lock} name="Lock screen" />
+          <SettingSelect icon={theme} name="Themes" />
+          <SettingSelect icon={font} name="Fonts" />
+          <SettingSelect icon={start} name="Start" />
+          <SettingSelect icon={taskbar} name="Taskbar" />
+        </div>
+        <div className="flex-1 h-auto px-5 pt-2">
+          <label className="text-2xl font-thin mb-3 block">Background</label>
+
+          <div
+            className="w-[300px] h-[160px] relative bg-cover bg-center "
+            style={{
+              backgroundColor: BColor,
+              backgroundImage: `url(${wppArr[wallpaper]})`,
+            }}
+          >
+            <img src={corner} alt="" className="absolute bottom-0 left-0" />
+          </div>
+
+          <DropdownSelector
+            label="Background"
+            choices={[
+              {
+                name: "Picture",
+                func: () => {
+                  setWallpaper(preWallpaper);
+                },
+              },
+              {
+                name: "Solid color",
+                func: () => {
+                  setWallpaper(false);
+                },
+              },
+            ]}
+          />
+
+          <div className="mt-6">
+            {wallpaper || wallpaper === 0 ? (
+              <ImagePicker />
+            ) : (
+              <ColorPicker setColorTable={props.setColorTable} />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Settings = () => {
-  const { setSettings, setWallpaper } = useStore();
+  const { setSettings } = useStore();
+  const [colorTable, setColorTable] = useState(false);
 
   return (
     <WindowsBase
@@ -212,11 +451,10 @@ const Settings = () => {
       appClose={setSettings}
       num={8}
     >
-      <div className="bg-white w-full h-full">
-        <Routes>
-          <Route path="/" element={<Menu />} index />
-          <Route path="/personalize" element={<PersonalizationSetting />} />
-        </Routes>
+      <div className="bg-white w-full h-full relative">
+        {/* <Menu /> */}
+        <PersonalizationSetting setColorTable={setColorTable} />
+        {colorTable ? <ColorTable setColorTable={setColorTable} /> : false}
       </div>
     </WindowsBase>
   );

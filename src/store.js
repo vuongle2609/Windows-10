@@ -84,9 +84,17 @@ const useStore = create((set) => ({
       MangaO: bol,
     }));
   },
+  preWallpaper: 1,
+  setPreWallpaper: (num) => {
+    set(() => ({ preWallpaper: num }));
+  },
   wallpaper: 1,
   setWallpaper: (num) => {
     set(() => ({ wallpaper: num }));
+  },
+  BColor: "#ff8c00",
+  setBColor: (color) => {
+    set(() => ({ BColor: color }));
   },
 }));
 

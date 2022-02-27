@@ -56,5 +56,19 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
+
+  .settings_container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .settings_container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .hexcolor-small .react-colorful {
+    height: 250px;
+    width: 240px;
+  }
 }
 @tailwind utilities;

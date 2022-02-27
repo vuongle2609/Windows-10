@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Segoe UI Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Segoe UI Regular"),
+    url("../webfonts//Segoe\ UI.woff") format("woff");
+}
+
+html {
+  font-family: "Segoe UI Regular";
+}

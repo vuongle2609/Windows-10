@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./css/fontawesome.css";
 import "./css/index.css";
 import "./css/responsive.css";
+import "./css/font.css"
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 

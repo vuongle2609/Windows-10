@@ -12,17 +12,18 @@ import useStore from "../store";
 import Icons from "./Icons";
 import MenuRightClick from "./../components/MenuRightClick";
 
-// import wpp0 from "../assets/windows_wallpaper/img0.jpg";
-// import wpp1 from "../assets/windows_wallpaper/img1.jpg";
-// import wpp2 from "../assets/windows_wallpaper/img2.jpg";
-// import wpp3 from "../assets/windows_wallpaper/img3.jpg";
-// import wpp4 from "../assets/windows_wallpaper/img4.jpg";
+import wpp0 from "../assets/windows_wallpaper/img0.jpg";
+import wpp1 from "../assets/windows_wallpaper/img1.jpg";
+import wpp2 from "../assets/windows_wallpaper/img2.jpg";
+import wpp3 from "../assets/windows_wallpaper/img3.jpg";
+import wpp4 from "../assets/windows_wallpaper/img4.jpg";
 
-// const wppArr = [wpp0, wpp1, wpp2, wpp3, wpp4];
+const wppArr = [wpp0, wpp1, wpp2, wpp3, wpp4];
 
 const Desktop = () => {
   const {
     wallpaper,
+    BColor,
     NotePadO,
     ChromeO,
     VscodeO,
@@ -36,15 +37,17 @@ const Desktop = () => {
 
   return (
     <div
-      className="fixed top-0 bottom-0 left-0 right-0 select-none bg-cover bg-center bg-red-200"
-      // style={{
-      //   backgroundImage: `url(${wppArr[wallpaper]})`,
-      // }}
+      className="fixed top-0 bottom-0 left-0 right-0 select-none bg-cover bg-center "
+      style={{
+        backgroundColor: BColor,
+        backgroundImage: `url(${wppArr[wallpaper]})`,
+      }}
     >
       {NotePadO ? <NotePad /> : false}
       {ChromeO ? <Chrome /> : false}
       {VscodeO ? <Vscode /> : false}
       {SettingsO ? <Settings /> : false}
+      <Settings />
       {KrunkerO ? <Krunker /> : false}
       {MinecraftO ? <Minecraft /> : false}
       {AnimeO ? <Anime /> : false}
