@@ -6,7 +6,7 @@ const TaskbarMenuItem = ({ icon, func }) => {
       className="w-full h-[48px] flex items-center justify-center"
       onClick={func}
     >
-      <i class={`fa-thin fa-${icon} font-light text-[16px]`}></i>
+      <i className={`fa-thin fa-${icon} font-light text-[16px]`}></i>
     </div>
   );
 };

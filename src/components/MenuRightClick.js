@@ -58,10 +58,10 @@ const MenuItem = (props) => {
         <img src={props.img} alt="" className="w-[17px] h-auto mr-2" />
       );
     } else if (props.check) {
-      sideStatus = <i class="fa-thin fa-check font-medium mr-2"></i>;
+      sideStatus = <i className="fa-thin fa-check font-medium mr-2"></i>;
     } else if (props.isDot) {
       sideStatus = (
-        <i class="fa-solid fa-circle-small text-[12px] mr-[17px]"></i>
+        <i className="fa-solid fa-circle-small text-[12px] mr-[17px]"></i>
       );
     } else {
       sideStatus = <div className="w-[17px] h-auto mr-2"></div>;

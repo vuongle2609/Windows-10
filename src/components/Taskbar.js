@@ -88,7 +88,7 @@ const Taskbar = () => {
             className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200"
             onClick={setMenuOpen}
           >
-            <i class="fa-brands fa-windows text-[20px]"></i>
+            <i className="fa-brands fa-windows text-[20px]"></i>
           </div>
 
           {appN || appN === 0 ? (

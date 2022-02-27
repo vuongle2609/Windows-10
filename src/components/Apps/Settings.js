@@ -39,7 +39,7 @@ const wppArr = [wpp0, wpp1, wpp2, wpp3, wpp4];
 const SettingItem = (props) => {
   return (
     <div className={"mb-14 col " + props.size}>
-      <div className="w-full flex">
+      <div className="w-full flex" onClick={props.func}>
         <img src={props.img} alt="" className="mr-5" />
         <div className="flex-1 flex flex-col">
           <h3 className="text-base">{props.name}</h3>
@@ -50,7 +50,7 @@ const SettingItem = (props) => {
   );
 };
 
-const Menu = () => {
+const Menu = ({ setTab }) => {
   const [size, setSize] = useState("res-1");
   const [input, setInput] = useState("input-halve");
 
@@ -94,7 +94,7 @@ const Menu = () => {
                 className="w-full h-8 border-black border-[1px] outline-red-200 pr-12 pl-3 search_box"
                 placeholder="Find a setting"
               />
-              <i class="fa-thin fa-magnifying-glass absolute right-4 top-[50%] -translate-y-[50%]"></i>
+              <i className="fa-thin fa-magnifying-glass absolute right-4 top-[50%] -translate-y-[50%]"></i>
             </div>
           </div>
         </div>
@@ -129,6 +129,7 @@ const Menu = () => {
             name="Personalization"
             detail="Background, lock screen, colors"
             size={size}
+            func={() => setTab(1)}
           />
           <SettingItem
             img={icon6}
@@ -204,7 +205,7 @@ const DropdownSelector = ({ label, choices }) => {
           onClick={() => setIsDrop(true)}
         >
           <p className="text-[13px] font-medium">{choice}</p>
-          <i class="fa-thin fa-angle-down absolute top-[50%] -translate-y-[50%] right-2"></i>
+          <i className="fa-thin fa-angle-down absolute top-[50%] -translate-y-[50%] right-2"></i>
         </div>
         {isDrop ? (
           <ul className="absolute w-full left-0 top-0 bg-[#f2f2f2] py-1 border-[1px] border-[#999999]">
@@ -232,7 +233,10 @@ const DropdownSelector = ({ label, choices }) => {
 
 const SettingSelect = (props) => {
   return (
-    <div className="flex text-[13px] px-4 py-[12px] hover:bg-[#cfcfcf]">
+    <div
+      className="flex text-[13px] px-4 py-[12px] hover:bg-[#cfcfcf]"
+      onClick={props.func}
+    >
       <img src={props.icon} alt="" className="mr-3 scale-[98%]" />
       <p>{props.name}</p>
     </div>
@@ -248,6 +252,7 @@ const ImagePicker = () => {
       <div className="mt-2 flex">
         {wppArr.map((wpp, index) => (
           <div
+            key={index}
             style={{ backgroundImage: `url(${wpp})` }}
             className="w-[64px] h-[64px] mr-1 bg-center bg-cover"
             onClick={() => {
@@ -307,7 +312,7 @@ const ColorPicker = (props) => {
             {color === BColor ? (
               <span className="block absolute -top-[1px] -left-[1px] w-[99%] h-[99%] border-[3px] border-black">
                 <span className="flex items-center justify-center w-1/2 h-1/2 absolute -top-[1px] -right-[1px] bg-black">
-                  <i class="text-white fa-thin fa-check text-xs"></i>
+                  <i className="text-white fa-thin fa-check text-xs"></i>
                 </span>
               </span>
             ) : (
@@ -318,13 +323,12 @@ const ColorPicker = (props) => {
       </div>
       <div
         onClick={() => {
-          console.log("thang ngu");
           props.setColorTable(true);
         }}
         className="flex hover:bg-[#f2f2f2] w-[362px] p-2 mt-4 relative right-[8px]"
       >
         <span className="mr-2 bg-[#cccccc] flex items-center justify-center w-[36px] h-[36px]">
-          <i class="fa-regular fa-plus"></i>
+          <i className="fa-regular fa-plus"></i>
         </span>
         <p className="text-xs">Custom color</p>
       </div>
@@ -378,14 +382,14 @@ const PersonalizationSetting = (props) => {
     <div className="w-full h-full flex">
       <div className="flex flex-1">
         <div className="w-[287px] h-auto bg-[#e6e6e6]">
-          <SettingSelect icon={home} name="Home" />
+          <SettingSelect icon={home} name="Home" func={() => props.setTab(0)} />
           <div className="relative w-full px-4 mt-2">
             <input
               type="text"
               className="w-full h-7 border-black border-[1px] outline-red-200 pr-12 pl-3 search_box text-sm bg-[#f0f0f0] focus:bg-white"
               placeholder="Find a setting"
             />
-            <i class="fa-thin fa-magnifying-glass absolute right-7 top-[50%] -translate-y-[50%] text-xs"></i>
+            <i className="fa-thin fa-magnifying-glass absolute right-7 top-[50%] -translate-y-[50%] text-xs"></i>
           </div>
           <h4 className="font-bold px-4 text-xs py-6">Personalization</h4>
           <SettingSelect icon={background} name="Background" />
@@ -443,6 +447,16 @@ const PersonalizationSetting = (props) => {
 const Settings = () => {
   const { setSettings } = useStore();
   const [colorTable, setColorTable] = useState(false);
+  const [tab, setTab] = useState(0);
+
+  let render;
+  if (tab === 0) {
+    render = <Menu setTab={setTab} />;
+  } else if (tab === 1) {
+    render = (
+      <PersonalizationSetting setColorTable={setColorTable} setTab={setTab} />
+    );
+  }
 
   return (
     <WindowsBase
@@ -452,8 +466,7 @@ const Settings = () => {
       num={8}
     >
       <div className="bg-white w-full h-full relative">
-        {/* <Menu /> */}
-        <PersonalizationSetting setColorTable={setColorTable} />
+        {render}
         {colorTable ? <ColorTable setColorTable={setColorTable} /> : false}
       </div>
     </WindowsBase>
