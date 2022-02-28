@@ -11,6 +11,7 @@ import Yugioh from "../components/Apps/Yugioh";
 import useStore from "../store";
 import Icons from "./Icons";
 import MenuRightClick from "./../components/MenuRightClick";
+import TaskbarRightMenu from "../components/TaskbarRightMenu";
 
 import wpp0 from "../assets/windows_wallpaper/img0.jpg";
 import wpp1 from "../assets/windows_wallpaper/img1.jpg";
@@ -55,6 +56,7 @@ const Desktop = () => {
       <Icons />
       <Taskbar />
       <MenuRightClick />
+      <TaskbarRightMenu />
       <div className="desktop fixed top-0 bottom-0 left-0 right-0 -z-[20]"></div>
     </div>
   );

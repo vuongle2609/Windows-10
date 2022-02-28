@@ -39,11 +39,21 @@ const wppArr = [wpp0, wpp1, wpp2, wpp3, wpp4];
 const SettingItem = (props) => {
   return (
     <div className={"mb-14 col " + props.size}>
-      <div className="w-full flex" onClick={props.func}>
-        <img src={props.img} alt="" className="mr-5" />
+      <div
+        className={"w-full flex " + (props.func ? " " : " brightness-150")}
+        onClick={props.func}
+      >
+        <img
+          src={props.img}
+          alt=""
+          className="mr-5"
+          style={{ width: 28, height: 28 }}
+        />
         <div className="flex-1 flex flex-col">
-          <h3 className="text-base">{props.name}</h3>
-          <p className="text-sm text-[#666666]">{props.detail}</p>
+          <h3 className={"text-sm " + (props.func ? " " : " text-[#666666]")}>
+            {props.name}
+          </h3>
+          <p className="text-[12px] text-[#666666]">{props.detail}</p>
         </div>
       </div>{" "}
     </div>
@@ -91,7 +101,7 @@ const Menu = ({ setTab }) => {
             <div className="relative w-full">
               <input
                 type="text"
-                className="w-full h-8 border-black border-[1px] outline-red-200 pr-12 pl-3 search_box"
+                className="w-full h-7 border-black border-[1px] outline-red-200 pr-12 pl-3 search_box text-sm"
                 placeholder="Find a setting"
               />
               <i className="fa-thin fa-magnifying-glass absolute right-4 top-[50%] -translate-y-[50%]"></i>
@@ -237,7 +247,7 @@ const SettingSelect = (props) => {
       className="flex text-[13px] px-4 py-[12px] hover:bg-[#cfcfcf]"
       onClick={props.func}
     >
-      <img src={props.icon} alt="" className="mr-3 scale-[98%]" />
+      <img src={props.icon} alt="" className="mr-3" style={{ fill: "#fff" }} />
       <p>{props.name}</p>
     </div>
   );

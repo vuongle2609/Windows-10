@@ -19,8 +19,8 @@ import { useState } from "react";
 
 const TrayIcon = (props) => {
   return (
-    <div className="p-1">
-      <img src={props.icon} alt="" />
+    <div className="p-[3px]" onClick={props.func}>
+      <img src={props.icon} style={{ height: 20, width: 20 }} alt="" />
     </div>
   );
 };
@@ -41,7 +41,7 @@ const TrayClock = () => {
   var day = time.getDate();
 
   return (
-    <div className="text-[12px] flex flex-col items-center p-[11px]">
+    <div className="text-[12px] flex flex-col items-center p-[11px] font-medium">
       <p>
         {hour}:{minutes < 10 ? `0${minutes}` : minutes}{" "}
         {hour > 12 ? " pm" : " am"}
@@ -54,7 +54,8 @@ const TrayClock = () => {
 };
 
 const Taskbar = () => {
-  const { setMenuOpen, appN } = useStore();
+  const { setMenuOpen, appN, setRightMenuTaskbar, RightMenuTaskbar } =
+    useStore();
 
   const iconArr = [
     chrome,
@@ -65,19 +66,22 @@ const Taskbar = () => {
     movie,
     manga,
     yugioh,
-    setting
+    setting,
   ];
 
   const handleMinimize = () => {
     const window = document.querySelector(".react-draggable");
+    const trayIcon = document.querySelector(".app-tray");
 
     const isMinimize = window.classList.contains("hidden");
 
     if (isMinimize) {
       window.classList.remove("hidden");
+      trayIcon.classList.add("bg-[#fcfcfc]");
       return;
     }
     window.classList.add("hidden");
+    trayIcon.classList.remove("bg-[#fcfcfc]");
   };
 
   return (
@@ -85,18 +89,25 @@ const Taskbar = () => {
       <div className="fixed bottom-0 left-0 right-0 h-[40px] bg-[#eeeeee] dark:bg-darkMode flex z-[99999] justify-between items-center">
         <div className="flex">
           <div
-            className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200"
+            className="h-[40px] w-[48px] flex justify-center items-center hover:bg-[#fcfcfc]"
             onClick={setMenuOpen}
           >
-            <i className="fa-brands fa-windows text-[20px]"></i>
+            <i className="fa-brands fa-windows text-[18px]"></i>
           </div>
 
           {appN || appN === 0 ? (
             <div
-              className="h-[40px] w-[48px] flex justify-center items-center hover:bg-red-200 p-2"
+              className="
+              relative bg-[#fcfcfc] h-[40px] w-[44px] flex justify-center 
+              items-center p-2 app-tray after:content-[''] after:block after:w-full
+              after:h-[2px] after:bg-black after:absolute after:bottom-0 after:left-0"
               onClick={handleMinimize}
             >
-              <img src={iconArr[appN]} alt="" className="w-full h-full" />
+              <img
+                src={iconArr[appN]}
+                alt=""
+                style={{ height: 22, width: 22 }}
+              />
             </div>
           ) : (
             false
@@ -111,7 +122,16 @@ const Taskbar = () => {
           </div>
           <TrayClock />
 
-          <TrayIcon icon={notif} />
+          <TrayIcon
+            icon={notif}
+            func={() => {
+              if (RightMenuTaskbar) {
+                setRightMenuTaskbar(false);
+                return;
+              }
+              setRightMenuTaskbar(true);
+            }}
+          />
           <div
             className="w-[5px] border-l-[1px] border-gray-400 h-full ml-[14px]"
             onClick={handleMinimize}
