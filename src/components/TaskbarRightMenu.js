@@ -1,29 +1,73 @@
 import useStore from "../store";
 import { useState } from "react";
 
-import { ReactComponent as Test } from "../assets/settings_icons/account.svg";
+import alertB from "../assets/right_menu/black/alert.svg";
+import bateryB from "../assets/right_menu/black/batery.svg";
+import bluetoothB from "../assets/right_menu/black/bluetooth.svg";
+import connectB from "../assets/right_menu/black/connect.svg";
+import hotspotB from "../assets/right_menu/black/hotspot.svg";
+import locationB from "../assets/right_menu/black/location.svg";
+import nearB from "../assets/right_menu/black/near.svg";
+import networkB from "../assets/right_menu/black/network.svg";
+import nightB from "../assets/right_menu/black/night.svg";
+import planeB from "../assets/right_menu/black/plane.svg";
+import projectB from "../assets/right_menu/black/project.svg";
+import settingB from "../assets/right_menu/black/setting.svg";
+import snipB from "../assets/right_menu/black/snip.svg";
+import tabletB from "../assets/right_menu/black/tablet.svg";
+import vpnB from "../assets/right_menu/black/vpn.svg";
 
-const MenuIcon = (props) => {
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill={props.fill}
-    className={props.class}
-  ></svg>;
+import alertW from "../assets/right_menu/white/alert.svg";
+import bluetoothW from "../assets/right_menu/white/bluetooth.svg";
+import hotspotW from "../assets/right_menu/white/hotspot.svg";
+import locationW from "../assets/right_menu/white/location.svg";
+import nearW from "../assets/right_menu/white/near.svg";
+import nightW from "../assets/right_menu/white/night.svg";
+import tabletW from "../assets/right_menu/white/tablet.svg";
+
+const ActionItems = (props) => {
+  return (
+    <div className="w-[24%] bg-[#efefef] h-[62px] mb-[4px] p-[6px] flex flex-col justify-between">
+      <img src={props.icon} alt="" style={{ width: 19, height: 19 }} />
+      <p className="text-xs">{props.name}</p>
+    </div>
+  );
 };
 
 const ActionMenu = () => {
   const [hide, setHide] = useState(true);
-  console.log(hide);
+
   return (
     <div
-      onClick={() => setHide(!hide)}
       className={
-        " bg-blue-200 h-48 transition-all duration-150 " +
-        (hide ? " -mb-28" : " mb-0")
+        "h-[440px] transition-all duration-150 " + (hide ? " -mb-[298px]" : " mb-0")
       }
     >
-      foskjfskdfj
-      <Test />
+      <div className="flex justify-between w-full text-xs mb-5">
+        <span onClick={() => setHide(!hide)}>
+          {!hide ? "Collapse" : "Expand"}
+        </span>
+        <span>Clear all notifications</span>
+      </div>
+
+      <div className="w-full flex justify-between flex-wrap">
+        <ActionItems icon={locationB} name="Location" />
+        <ActionItems icon={bateryB} name="Battery saver" />
+        <ActionItems icon={bluetoothB} name="Bluetooth" />
+        <ActionItems icon={nightB} name="Night light" />
+        <ActionItems icon={tabletB} name="Tablet mode" />
+        <ActionItems icon={hotspotB} name="Mobile hotspot" />
+        <ActionItems icon={planeB} name="Airplane mode" />
+        <ActionItems icon={nearB} name="Nearby sharing" />
+        <ActionItems icon={settingB} name="All settings" />
+        <ActionItems icon={networkB} name="Network" />
+        <ActionItems icon={connectB} name="Connect" />
+        <ActionItems icon={projectB} name="Project" />
+        <ActionItems icon={vpnB} name="VPN" />
+        <ActionItems icon={alertB} name="Priority only" />
+        <ActionItems icon={snipB} name="Screen snip" />
+        <div className="w-[24%] h-[62px] mb-[4px]"></div>
+      </div>
     </div>
   );
 };
