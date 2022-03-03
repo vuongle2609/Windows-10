@@ -100,6 +100,10 @@ const useStore = create((set) => ({
   setRightMenuTaskbar: (bol) => {
     set(() => ({ RightMenuTaskbar: bol }));
   },
+  isNight: false,
+  setIsNight: (bol) => {
+    set(() => ({ isNight: bol }));
+  },
 }));
 
 export default useStore;

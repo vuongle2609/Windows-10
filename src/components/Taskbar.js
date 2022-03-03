@@ -86,7 +86,7 @@ const Taskbar = () => {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 h-[40px] bg-[#eeeeee] dark:bg-darkMode flex z-[99999] justify-between items-center">
+      <div className="fixed bottom-0 left-0 right-0 h-[40px] bg-[#eeeeee] dark:bg-darkMode flex z-[999] justify-between items-center">
         <div className="flex">
           <div
             className="h-[40px] w-[48px] flex justify-center items-center hover:bg-[#fcfcfc]"
