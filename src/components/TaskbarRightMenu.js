@@ -1,5 +1,5 @@
 import useStore from "../store";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import alertB from "../assets/right_menu/black/alert.svg";
 import bateryB from "../assets/right_menu/black/batery.svg";
@@ -34,13 +34,59 @@ const ActionItems = (props) => {
   );
 };
 
+const ActionItemsClick = (props) => {
+  return (
+    <div className="w-[24%] bg-[#efefef] h-[62px] mb-[4px] p-[6px] flex flex-col justify-between">
+      <img src={props.icon} alt="" style={{ width: 19, height: 19 }} />
+      <p className="text-xs">{props.name}</p>
+    </div>
+  );
+};
+
+const ActionItemsToggle = (props) => {
+  const [toggle, setToggle] = useState(false);
+  const [icon, setIcon] = useState(true);
+
+  setTimeout(() => {
+    setIcon(true);
+  }, 1000);
+
+  return (
+    <div
+      onClick={() => {
+        setToggle(!toggle);
+        setIcon(false);
+      }}
+      className={
+        "w-[24%] h-[62px] mb-[4px] p-[6px] flex flex-col justify-between hover:brightness-110 duration-200 transition-all" +
+        (toggle ? " bg-[#3e3e3e]" : " bg-[#efefef]")
+      }
+    >
+      {icon ? (
+        <img
+          src={toggle ? props.iconOn : props.icon}
+          alt=""
+          style={{ width: 19, height: 19 }}
+        />
+      ) : (
+        <p className={"text-xs" + (toggle ? " text-white" : "")}>
+          {toggle ? "On" : "Off"}
+        </p>
+      )}
+
+      <p className={"text-xs" + (toggle ? " text-white" : "")}>{props.name}</p>
+    </div>
+  );
+};
+
 const ActionMenu = () => {
   const [hide, setHide] = useState(true);
 
   return (
     <div
       className={
-        "h-[440px] transition-all duration-150 " + (hide ? " -mb-[298px]" : " mb-0")
+        "h-[440px] transition-all duration-150 " +
+        (hide ? " -mb-[298px]" : " mb-0")
       }
     >
       <div className="flex justify-between w-full text-xs mb-5">
@@ -51,20 +97,32 @@ const ActionMenu = () => {
       </div>
 
       <div className="w-full flex justify-between flex-wrap">
-        <ActionItems icon={locationB} name="Location" />
+        <ActionItemsToggle
+          icon={locationB}
+          iconOn={locationW}
+          name="Location"
+        />
         <ActionItems icon={bateryB} name="Battery saver" />
-        <ActionItems icon={bluetoothB} name="Bluetooth" />
-        <ActionItems icon={nightB} name="Night light" />
-        <ActionItems icon={tabletB} name="Tablet mode" />
-        <ActionItems icon={hotspotB} name="Mobile hotspot" />
+        <ActionItemsToggle
+          icon={bluetoothB}
+          iconOn={bluetoothW}
+          name="Bluetooth"
+        />
+        <ActionItemsToggle icon={nightB} iconOn={nightW} name="Night light" />
+        <ActionItemsToggle icon={tabletB} iconOn={tabletW} name="Tablet mode" />
+        <ActionItemsToggle
+          icon={hotspotB}
+          iconOn={hotspotW}
+          name="Mobile hotspot"
+        />
         <ActionItems icon={planeB} name="Airplane mode" />
-        <ActionItems icon={nearB} name="Nearby sharing" />
+        <ActionItemsToggle icon={nearB} iconOn={nearW} name="Nearby sharing" />
         <ActionItems icon={settingB} name="All settings" />
         <ActionItems icon={networkB} name="Network" />
         <ActionItems icon={connectB} name="Connect" />
         <ActionItems icon={projectB} name="Project" />
         <ActionItems icon={vpnB} name="VPN" />
-        <ActionItems icon={alertB} name="Priority only" />
+        <ActionItemsToggle icon={alertB} iconOn={alertW} name="Priority only" />
         <ActionItems icon={snipB} name="Screen snip" />
         <div className="w-[24%] h-[62px] mb-[4px]"></div>
       </div>
