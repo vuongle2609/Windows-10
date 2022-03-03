@@ -96,7 +96,7 @@ const useStore = create((set) => ({
   setBColor: (color) => {
     set(() => ({ BColor: color }));
   },
-  RightMenuTaskbar: true,
+  RightMenuTaskbar: false,
   setRightMenuTaskbar: (bol) => {
     set(() => ({ RightMenuTaskbar: bol }));
   },
