@@ -17,7 +17,6 @@ const SideBarMenu = () => {
   const [sideBar, setSideBar] = useState(false)
 
   const handleSideBar = setTimeout(() => {
-    console.log("moing")
     setSideBar(true)
   }, 1000);
 
@@ -26,7 +25,6 @@ const SideBarMenu = () => {
   }
 
   const handleOut = () => {
-    console.log("donging")
     setSideBar(false)
     clearTimeout(handleSideBar)
   }
@@ -58,7 +56,7 @@ const TaskbarMenu = () => {
   return (
     <div
       className={
-        `fixed left-0 h-1/2 flex origin-bottom-left duration-[160ms] z-[999]` +
+        `fixed left-0 h-1/2 flex origin-bottom-left duration-[160ms] z-[998]` +
         (menuOpen ? " bottom-[40px]" : " -bottom-full")
       }
     >

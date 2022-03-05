@@ -1,4 +1,5 @@
 import create from "zustand";
+import Brightness from "./components/Brightness";
 
 const useStore = create((set) => ({
   menuOpen: false,
@@ -96,13 +97,17 @@ const useStore = create((set) => ({
   setBColor: (color) => {
     set(() => ({ BColor: color }));
   },
-  RightMenuTaskbar: false,
+  RightMenuTaskbar: true,
   setRightMenuTaskbar: (bol) => {
     set(() => ({ RightMenuTaskbar: bol }));
   },
   isNight: false,
   setIsNight: (bol) => {
     set(() => ({ isNight: bol }));
+  },
+  brightness: 0.4,
+  setBrightness: (br) => {
+    set(() => ({ brightness: br }));
   },
 }));
 

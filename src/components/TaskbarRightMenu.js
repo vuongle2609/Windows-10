@@ -1,5 +1,5 @@
 import useStore from "../store";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import alertB from "../assets/right_menu/black/alert.svg";
 import bateryB from "../assets/right_menu/black/batery.svg";
@@ -25,6 +25,8 @@ import planeW from "../assets/right_menu/white/plane.svg";
 import nearW from "../assets/right_menu/white/near.svg";
 import nightW from "../assets/right_menu/white/night.svg";
 import tabletW from "../assets/right_menu/white/tablet.svg";
+
+import brightness from "../assets/right_menu/black/brightness.svg";
 
 const ActionItems = (props) => {
   return (
@@ -63,8 +65,94 @@ const ActionItemsToggle = (props) => {
   );
 };
 
+const BrightnessBar = () => {
+  const [drag, setDrag] = useState(false);
+  const [left, setLeft] = useState(0);
+  const [percent, setPercent] = useState(0);
+  const [hidePercent, setHidePercent] = useState(true);
+  const container = useRef();
+  const { setBrightness } = useStore();
+
+  useEffect(() => {
+    document.addEventListener("mouseup", () => {
+      setDrag(false);
+      setHidePercent(true);
+    });
+  }, []);
+
+  const handleProgress = (e) => {
+    const containerPosition = container.current.getBoundingClientRect().left;
+    const containerWitdh = container.current.offsetWidth;
+    const mousePosition = e.clientX;
+
+    const widthDiff = Math.round(mousePosition - containerPosition);
+    const progressPercent = Math.round((widthDiff / containerWitdh) * 100);
+
+    if (widthDiff >= 0 && widthDiff <= containerWitdh) {
+      setLeft(widthDiff);
+      setPercent(progressPercent);
+      setBrightness(0.4 - (0.4 * progressPercent) / 100);
+    } else if (widthDiff < 0) {
+      setLeft(0);
+      setPercent(0);
+      setBrightness(0.4);
+    } else if (widthDiff > containerWitdh) {
+      setLeft(containerWitdh);
+      setPercent(100);
+      setBrightness(0);
+    }
+  };
+
+  document.onmousemove = (e) => {
+    if (drag) {
+      handleProgress(e);
+    }
+  };
+
+  return (
+    <div
+      onMouseDown={(e) => {
+        setDrag(true);
+        setHidePercent(false);
+        handleProgress(e);
+      }}
+      className="w-[86%] h-12 mx-auto mt-3 flex items-center"
+    >
+      <img
+        src={brightness}
+        alt=""
+        className="mx-2"
+        style={{ width: 21, height: 21 }}
+      />
+      <div className="flex-1 mr-6 ml-2 relative h-full group" ref={container}>
+        <div className="w-full h-[2px] bg-[#3f3f3f] absolute left-0 top-1/2 -translate-y-1/2"></div>
+        <div
+          style={{ width: left }}
+          className="w-1/2 h-[2px] bg-[#898989] absolute left-0 top-1/2 -translate-y-1/2"
+        ></div>
+        <div
+          style={{ left: left }}
+          className="w-2 h-[54%] rounded-xl bg-[#3f3f3f] group-hover:bg-[#171717] group-active:bg-[#cccccc] absolute left-0 top-1/2 -translate-y-1/2"
+        >
+          <div className="relative w-full h-full">
+            <div
+              className={
+                "absolute min-h-[18px] hidden px-[10px] py-[2px] bg-[#f2f2f2] bottom-[170%] left-50% " +
+                "-translate-x-[36%] border-[#d1d1d1] border-[1px] shadow-md group-active:block duration-[400ms]" +
+                (hidePercent ? " opacity-0" : " opacity-1")
+              }
+            >
+              {percent}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ActionMenu = () => {
-  const [hide, setHide] = useState(true);
+  const [hide, setHide] = useState(false);
   const { setIsNight, setSettings } = useStore();
 
   return (
@@ -75,10 +163,15 @@ const ActionMenu = () => {
       }
     >
       <div className="flex justify-between w-full text-xs mb-5">
-        <span onClick={() => setHide(!hide)}>
+        <span
+          onClick={() => setHide(!hide)}
+          className="hover:text-[#949494] active:text-[#b0b0b0]"
+        >
           {!hide ? "Collapse" : "Expand"}
         </span>
-        <span>Clear all notifications</span>
+        <span className="hover:text-[#949494] active:text-[#b0b0b0]">
+          Clear all notifications
+        </span>
       </div>
 
       <div className="w-full flex justify-between flex-wrap">
@@ -121,7 +214,7 @@ const ActionMenu = () => {
         <div className="w-[24%] h-[62px] mb-[4px]"></div>
       </div>
 
-      <div className="w-[90%] h-12 bg-red-200 mx-auto mt-3"></div>
+      <BrightnessBar />
     </div>
   );
 };
@@ -132,7 +225,7 @@ const TaskbarRightMenu = () => {
     <div
       className={
         "fixed top-0 bottom-0 right-0 w-[398px] bg-[#e4e4e4] " +
-        " shadow-md border-l-[1px] border-black transition-all duration-[300ms] ease-in-out" +
+        " shadow-md border-l-[1px] border-[#a2a2a2] transition-all duration-[300ms] ease-in-out" +
         " px-4 pt-4 " +
         (RightMenuTaskbar ? " mr-[0px]" : " -mr-[398px]")
       }
