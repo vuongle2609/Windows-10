@@ -97,7 +97,7 @@ const useStore = create((set) => ({
   setBColor: (color) => {
     set(() => ({ BColor: color }));
   },
-  RightMenuTaskbar: true,
+  RightMenuTaskbar: false,
   setRightMenuTaskbar: (bol) => {
     set(() => ({ RightMenuTaskbar: bol }));
   },
@@ -108,6 +108,10 @@ const useStore = create((set) => ({
   brightness: 0.4,
   setBrightness: (br) => {
     set(() => ({ brightness: br }));
+  },
+  volIcon: 0,
+  setVolIcon: (vol) => {
+    set(() => ({ volIcon: vol }));
   },
 }));
 
