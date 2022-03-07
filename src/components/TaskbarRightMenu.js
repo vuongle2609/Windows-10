@@ -152,7 +152,7 @@ const BrightnessBar = () => {
 };
 
 const ActionMenu = () => {
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(true);
   const { setIsNight, setSettings } = useStore();
 
   return (
