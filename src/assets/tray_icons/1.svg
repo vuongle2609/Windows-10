@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
+	<title>sdfdf</title>
+	<defs>
+		<image  width="14" height="12" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAMAAABlXnzoAAAAAXNSR0IB2cksfwAAAF1QTFRF3fL03PHz3fP0ipiYAAAA2fDx3vX23PP02/Lz3fT12/T02/Dy3PLziZaX2vHyiZeY2vPzipiZ3vT1UVpaiJaXUVtb2/HyiJiY3vP13PX13/X2iZiYKS0tKCwt3fb2EaINLgAAAB90Uk5TAAAA//8AAAAAAAAAAP8A/wD/AP///wD/AAAA////AAMz898AAACDSURBVHicFY7bDoMwDENDMCSlWbJ2jAG7/P9nLlh+sY5km2hgHjHNoiJloVrtBpiou+pCRIERnFAnuROA1sH+WLWsTwL1bQPPgQi8CNWYYSoBrAthNzaYewPiSNpPBpfAO31VRUb/tFLiS0Mdc+h0KfnjR3vlLDEXTR005MmG7nLl4w8UJgZUpqIiUAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Layer 4" href="#img1" x="3" y="4" />
+</svg>

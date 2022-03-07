@@ -224,7 +224,7 @@ const TaskbarRightMenu = () => {
   return (
     <div
       className={
-        "fixed top-0 bottom-0 right-0 w-[398px] bg-[#e4e4e4] " +
+        "taskbar_right fixed top-0 bottom-0 right-0 w-[398px] bg-[#e4e4e4] " +
         " shadow-md border-l-[1px] border-[#a2a2a2] transition-all duration-[300ms] ease-in-out" +
         " px-4 pt-4 " +
         (RightMenuTaskbar ? " mr-[0px]" : " -mr-[398px]")

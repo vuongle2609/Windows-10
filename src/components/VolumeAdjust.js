@@ -11,12 +11,18 @@ const VolumeAdjust = () => {
   const [left, setLeft] = useState(0);
   const [percent, setPercent] = useState(0);
   const container = useRef();
-  const { setVolIcon } = useStore();
+  const { setVolIcon, volumeBar } = useStore();
 
   document.addEventListener("mouseup", () => {
     setDrag(false);
   });
-  
+
+  useEffect(() => {
+    if (!drag) {
+      setVolIcon(percent);
+    }
+  }, [drag]);
+
   let srcRender;
 
   const handleProgress = (e) => {
@@ -56,7 +62,12 @@ const VolumeAdjust = () => {
   }
 
   return (
-    <div className="flex flex-col fixed bottom-[40px] right-0 bg-[#eeeeee] border-1px border-black px-3 py-3 w-[370px]">
+    <div
+      className={
+        "volume_bar flex flex-col fixed right-0 bg-[#eeeeee] border-1px border-black px-3 py-3 w-[370px] duration-150 transition-all" +
+        (volumeBar ? " bottom-[40px]" : " -bottom-[80px]")
+      }
+    >
       <h3 className="text-[15px]">Speakers (Realtek High Definition Audio)</h3>
       <div
         onMouseDown={(e) => {
