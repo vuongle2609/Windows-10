@@ -8,27 +8,31 @@ import movie from "../assets/icon_windows/icon-for-movie-1.jpg";
 import manga from "../assets/icon_windows/manga-icon-0.jpg";
 import yugioh from "../assets/icon_windows/yugioh.jpg";
 
+import { useEffect, useState } from "react";
+
 const IconBox = (props) => {
   const { icon, onApp } = useStore();
+  const [count, setCount] = useState(0);
 
   let iconSize;
   let imgSize;
   let textSize;
 
-  let count = 0;
   const handleOpenApp = () => {
-    count += 1;
+    setCount((prev) => prev + 1);
 
+    setTimeout(() => {
+      setCount((prev) => prev - 1);
+    }, 500);
+  };
+
+  useEffect(() => {
     if (count === 2) {
       if (!onApp) {
         props.func();
       }
     }
-
-    setTimeout(() => {
-      count -= 1;
-    }, 500);
-  };
+  }, [count])
 
   if (icon === 0) {
     iconSize = " w-[75px] mb-2 mt-2";

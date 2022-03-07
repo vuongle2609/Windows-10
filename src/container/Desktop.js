@@ -15,6 +15,7 @@ import TaskbarRightMenu from "../components/TaskbarRightMenu";
 import Nightlight from "../components/Nightlight";
 import Brightness from "../components/Brightness";
 import VolumeAdjust from "../components/VolumeAdjust";
+import Internet from "../components/Internet";
 
 import wpp0 from "../assets/windows_wallpaper/img0.jpg";
 import wpp1 from "../assets/windows_wallpaper/img1.jpg";
@@ -56,6 +57,7 @@ const Desktop = () => {
       {AnimeO ? <Anime /> : false}
       {MangaO ? <Manga /> : false}
       {YugiohO ? <Yugioh /> : false}
+      <Internet />
       <VolumeAdjust />
       <Nightlight />
       <Brightness />
