@@ -15,11 +15,16 @@ import arrow from "../assets/tray_icons/arrow.svg";
 import baterry from "../assets/tray_icons/baterry.svg";
 import wifi from "../assets/tray_icons/wifi.svg";
 
-import { useState } from "react";
+import vol1 from "../assets/tray_icons/1.svg";
+import vol2 from "../assets/tray_icons/2.svg";
+import vol3 from "../assets/tray_icons/3.svg";
+import vol4 from "../assets/tray_icons/4.svg";
+
+import { useState, useEffect } from "react";
 
 const TrayIcon = (props) => {
   return (
-    <div className="p-[3px]" onClick={props.func}>
+    <div className={"p-[3px] " + props.className} onClick={props.func}>
       <img src={props.icon} style={{ height: 20, width: 20 }} alt="" />
     </div>
   );
@@ -54,8 +59,15 @@ const TrayClock = () => {
 };
 
 const Taskbar = () => {
-  const { setMenuOpen, appN, setRightMenuTaskbar, RightMenuTaskbar } =
-    useStore();
+  const {
+    setMenuOpen,
+    appN,
+    setRightMenuTaskbar,
+    RightMenuTaskbar,
+    volIcon,
+    setVolumeBar,
+    volumeBar,
+  } = useStore();
 
   const iconArr = [
     chrome,
@@ -68,6 +80,31 @@ const Taskbar = () => {
     yugioh,
     setting,
   ];
+
+  useEffect(() => {
+    const handleClose = (className, func) => {
+      document.addEventListener("click", (e) => {
+        const isContain = e.target.closest(`.${className}`);
+        if (!isContain) {
+          func(false);
+        }
+      });
+    };
+
+    handleClose("volume_bar", setVolumeBar);
+    handleClose("taskbar_right", setRightMenuTaskbar);
+  }, []);
+
+  let vol;
+  if (volIcon > 65) {
+    vol = vol4;
+  } else if (volIcon > 32) {
+    vol = vol3;
+  } else if (volIcon > 0) {
+    vol = vol2;
+  } else {
+    vol = vol1;
+  }
 
   const handleMinimize = () => {
     const window = document.querySelector(".react-draggable");
@@ -117,13 +154,24 @@ const Taskbar = () => {
           <TrayIcon icon={arrow} />
           <TrayIcon icon={baterry} />
           <TrayIcon icon={wifi} />
+          <TrayIcon
+            icon={vol}
+            className="volume_bar"
+            func={() => {
+              if (volumeBar) {
+                setVolumeBar(false);
+                return;
+              }
+              setVolumeBar(true);
+            }}
+          />
           <div className="text-xs ml-[10px]">
             <p>ENG</p>
           </div>
           <TrayClock />
-
           <TrayIcon
             icon={notif}
+            className="taskbar_right"
             func={() => {
               if (RightMenuTaskbar) {
                 setRightMenuTaskbar(false);

@@ -109,6 +109,14 @@ const useStore = create((set) => ({
   setBrightness: (br) => {
     set(() => ({ brightness: br }));
   },
+  volIcon: 0,
+  setVolIcon: (vol) => {
+    set(() => ({ volIcon: vol }));
+  },
+  volumeBar: false,
+  setVolumeBar: (bol) => {
+    set(() => ({ volumeBar: bol }));
+  },
 }));
 
 export default useStore;
