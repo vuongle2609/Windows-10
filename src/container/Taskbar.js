@@ -67,6 +67,8 @@ const Taskbar = () => {
     volIcon,
     setVolumeBar,
     volumeBar,
+    wifiBar,
+    setWifiBar,
   } = useStore();
 
   const iconArr = [
@@ -93,6 +95,7 @@ const Taskbar = () => {
 
     handleClose("volume_bar", setVolumeBar);
     handleClose("taskbar_right", setRightMenuTaskbar);
+    handleClose("internet_bar", setWifiBar);
   }, []);
 
   let vol;
@@ -153,7 +156,17 @@ const Taskbar = () => {
         <div className="flex h-full items-center">
           <TrayIcon icon={arrow} />
           <TrayIcon icon={baterry} />
-          <TrayIcon icon={wifi} />
+          <TrayIcon
+            icon={wifi}
+            className="internet_bar"
+            func={() => {
+              if (wifiBar) {
+                setWifiBar(false);
+                return;
+              }
+              setWifiBar(true);
+            }}
+          />
           <TrayIcon
             icon={vol}
             className="volume_bar"

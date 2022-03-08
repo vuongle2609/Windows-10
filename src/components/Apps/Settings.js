@@ -1,4 +1,5 @@
 import WindowsBase from "./WindowsBase";
+import DropdownSelector from "../DropdownSelector";
 import useStore from "../../store";
 import { useEffect, useState } from "react";
 
@@ -202,45 +203,6 @@ features"
   );
 };
 
-const DropdownSelector = ({ label, choices }) => {
-  const [isDrop, setIsDrop] = useState(false);
-  const [choice, setChoice] = useState(choices[0].name);
-
-  return (
-    <div className="mt-14">
-      <h3 className="text-xs block mb-[6px]">{label}</h3>
-      <div className="relative w-[280px]">
-        <div
-          className="border-[2px] border-[#999999] hover:border-[#666666] px-2 py-[4px]"
-          onClick={() => setIsDrop(true)}
-        >
-          <p className="text-[13px] font-medium">{choice}</p>
-          <i className="fa-thin fa-angle-down absolute top-[50%] -translate-y-[50%] right-2"></i>
-        </div>
-        {isDrop ? (
-          <ul className="absolute w-full left-0 top-0 bg-[#f2f2f2] py-1 border-[1px] border-[#999999]">
-            {choices.map((choice, index) => (
-              <li
-                className="px-2 py-[4px] text-[13px] font-medium hover:bg-[#dadada]"
-                key={index}
-                onClick={() => {
-                  choice.func();
-                  setIsDrop(false);
-                  setChoice(choices[index].name);
-                }}
-              >
-                {choice.name}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          false
-        )}
-      </div>
-    </div>
-  );
-};
-
 const SettingSelect = (props) => {
   return (
     <div
@@ -422,24 +384,25 @@ const PersonalizationSetting = (props) => {
           >
             <img src={corner} alt="" className="absolute bottom-0 left-0" />
           </div>
-
-          <DropdownSelector
-            label="Background"
-            choices={[
-              {
-                name: "Picture",
-                func: () => {
-                  setWallpaper(preWallpaper);
+          <div className="mt-14">
+            <DropdownSelector
+              label="Background"
+              choices={[
+                {
+                  name: "Picture",
+                  func: () => {
+                    setWallpaper(preWallpaper);
+                  },
                 },
-              },
-              {
-                name: "Solid color",
-                func: () => {
-                  setWallpaper(false);
+                {
+                  name: "Solid color",
+                  func: () => {
+                    setWallpaper(false);
+                  },
                 },
-              },
-            ]}
-          />
+              ]}
+            />
+          </div>
 
           <div className="mt-6">
             {wallpaper || wallpaper === 0 ? (

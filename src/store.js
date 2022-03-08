@@ -117,6 +117,10 @@ const useStore = create((set) => ({
   setVolumeBar: (bol) => {
     set(() => ({ volumeBar: bol }));
   },
+  wifiBar: false,
+  setWifiBar: (bol) => {
+    set(() => ({ wifiBar: bol }));
+  },
 }));
 
 export default useStore;
