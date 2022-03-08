@@ -1,4 +1,4 @@
-import Taskbar from "../components/Taskbar";
+import Taskbar from "./Taskbar";
 import NotePad from "../components/Apps/NotePad";
 import Chrome from "../components/Apps/Chrome";
 import Vscode from "../components/Apps/Vscode";
@@ -10,12 +10,12 @@ import Manga from "../components/Apps/Manga";
 import Yugioh from "../components/Apps/Yugioh";
 import useStore from "../store";
 import Icons from "./Icons";
-import MenuRightClick from "./../components/MenuRightClick";
-import TaskbarRightMenu from "../components/TaskbarRightMenu";
+import MenuRightClick from "./MenuRightClick";
+import TaskbarRightMenu from "./TaskbarRightMenu";
 import Nightlight from "../components/Nightlight";
 import Brightness from "../components/Brightness";
-import VolumeAdjust from "../components/VolumeAdjust";
-import Internet from "../components/Internet";
+import VolumeAdjust from "./VolumeAdjust";
+import Internet from "./Internet";
 
 import wpp0 from "../assets/windows_wallpaper/img0.jpg";
 import wpp1 from "../assets/windows_wallpaper/img1.jpg";
