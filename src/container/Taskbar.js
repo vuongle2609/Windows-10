@@ -69,6 +69,9 @@ const Taskbar = () => {
     volumeBar,
     wifiBar,
     setWifiBar,
+    langOpen,
+    setLangOpen,
+    lang,
   } = useStore();
 
   const iconArr = [
@@ -96,6 +99,7 @@ const Taskbar = () => {
     handleClose("volume_bar", setVolumeBar);
     handleClose("taskbar_right", setRightMenuTaskbar);
     handleClose("internet_bar", setWifiBar);
+    handleClose("lang_bar", setLangOpen);
   }, []);
 
   let vol;
@@ -178,8 +182,17 @@ const Taskbar = () => {
               setVolumeBar(true);
             }}
           />
-          <div className="text-xs ml-[10px]">
-            <p>ENG</p>
+          <div
+            onClick={() => {
+              if (langOpen) {
+                setLangOpen(false);
+                return;
+              }
+              setLangOpen(true);
+            }}
+            className="text-xs ml-[10px] lang_bar"
+          >
+            <p>{lang}</p>
           </div>
           <TrayClock />
           <TrayIcon

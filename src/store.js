@@ -121,6 +121,14 @@ const useStore = create((set) => ({
   setWifiBar: (bol) => {
     set(() => ({ wifiBar: bol }));
   },
+  lang: "ENG",
+  setLang: (l) => {
+    set(() => ({ lang: l }));
+  },
+  langOpen: false,
+  setLangOpen: (bol) => {
+    set(() => ({ langOpen: bol }));
+  },
 }));
 
 export default useStore;
