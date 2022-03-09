@@ -72,6 +72,8 @@ const Taskbar = () => {
     langOpen,
     setLangOpen,
     lang,
+    setBatteryBar,
+    batteryBar,
   } = useStore();
 
   const iconArr = [
@@ -100,6 +102,7 @@ const Taskbar = () => {
     handleClose("taskbar_right", setRightMenuTaskbar);
     handleClose("internet_bar", setWifiBar);
     handleClose("lang_bar", setLangOpen);
+    handleClose("battery_bar", setBatteryBar);
   }, []);
 
   let vol;
@@ -159,7 +162,17 @@ const Taskbar = () => {
         </div>
         <div className="flex h-full items-center">
           <TrayIcon icon={arrow} />
-          <TrayIcon icon={baterry} />
+          <TrayIcon
+            icon={baterry}
+            className="battery_bar"
+            func={() => {
+              if (batteryBar) {
+                setBatteryBar(false);
+                return;
+              }
+              setBatteryBar(true);
+            }}
+          />
           <TrayIcon
             icon={wifi}
             className="internet_bar"

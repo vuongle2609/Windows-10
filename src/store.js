@@ -129,6 +129,10 @@ const useStore = create((set) => ({
   setLangOpen: (bol) => {
     set(() => ({ langOpen: bol }));
   },
+  batteryBar: false,
+  setBatteryBar: (bol) => {
+    set(() => ({ batteryBar: bol }));
+  },
 }));
 
 export default useStore;
