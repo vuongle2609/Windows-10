@@ -24,7 +24,7 @@ import { useState, useEffect } from "react";
 
 const TrayIcon = (props) => {
   return (
-    <div className={"p-[3px] " + props.className} onClick={props.func}>
+    <div className={"px-[3px] h-full flex items-center " + props.className} onClick={props.func}>
       <img src={props.icon} style={{ height: 20, width: 20 }} alt="" />
     </div>
   );
@@ -203,7 +203,7 @@ const Taskbar = () => {
               }
               setLangOpen(true);
             }}
-            className="text-xs ml-[10px] lang_bar"
+            className="text-xs ml-[10px] h-full flex items-center lang_bar"
           >
             <p>{lang}</p>
           </div>

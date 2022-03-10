@@ -18,6 +18,7 @@ import VolumeAdjust from "./VolumeAdjust";
 import Internet from "./Internet";
 import Language from "./Language";
 import Battery from "./Battery";
+import CalendarBar from "./Calendar";
 
 import wpp0 from "../assets/windows_wallpaper/img0.jpg";
 import wpp1 from "../assets/windows_wallpaper/img1.jpg";
@@ -59,6 +60,7 @@ const Desktop = () => {
       {AnimeO ? <Anime /> : false}
       {MangaO ? <Manga /> : false}
       {YugiohO ? <Yugioh /> : false}
+      <CalendarBar />
       <Battery />
       <Language />
       <Internet />

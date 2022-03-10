@@ -153,7 +153,7 @@ const BrightnessBar = () => {
 
 const ActionMenu = () => {
   const [hide, setHide] = useState(true);
-  const { setIsNight, setSettings } = useStore();
+  const { setIsNight, setSettings, setRightMenuTaskbar } = useStore();
 
   return (
     <div
@@ -202,7 +202,10 @@ const ActionMenu = () => {
         <ActionItemsToggle icon={nearB} iconOn={nearW} name="Nearby sharing" />
         <ActionItems
           icon={settingB}
-          func={() => setSettings(true)}
+          func={() => {
+            setSettings(true);
+            setRightMenuTaskbar(false);
+          }}
           name="All settings"
         />
         <ActionItems icon={networkB} name="Network" />
