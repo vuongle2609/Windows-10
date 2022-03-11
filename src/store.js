@@ -1,5 +1,4 @@
 import create from "zustand";
-import Brightness from "./components/Brightness";
 
 const useStore = create((set) => ({
   menuOpen: false,
