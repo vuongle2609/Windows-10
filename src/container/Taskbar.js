@@ -24,13 +24,16 @@ import { useState, useEffect } from "react";
 
 const TrayIcon = (props) => {
   return (
-    <div className={"px-[3px] h-full flex items-center " + props.className} onClick={props.func}>
+    <div
+      className={"px-[3px] h-full flex items-center " + props.className}
+      onClick={props.func}
+    >
       <img src={props.icon} style={{ height: 20, width: 20 }} alt="" />
     </div>
   );
 };
 
-const TrayClock = () => {
+const TrayClock = (props) => {
   const [render, setRender] = useState(false);
 
   setInterval(() => {
@@ -46,7 +49,13 @@ const TrayClock = () => {
   var day = time.getDate();
 
   return (
-    <div className="text-[12px] flex flex-col items-center p-[11px] font-medium">
+    <div
+      className={
+        "text-[12px] flex flex-col items-center p-[11px] font-medium " +
+        props.className
+      }
+      onClick={props.func}
+    >
       <p>
         {hour}:{minutes < 10 ? `0${minutes}` : minutes}{" "}
         {hour > 12 ? " pm" : " am"}
@@ -74,6 +83,8 @@ const Taskbar = () => {
     lang,
     setBatteryBar,
     batteryBar,
+    clockBar,
+    setClockBar,
   } = useStore();
 
   const iconArr = [
@@ -103,6 +114,7 @@ const Taskbar = () => {
     handleClose("internet_bar", setWifiBar);
     handleClose("lang_bar", setLangOpen);
     handleClose("battery_bar", setBatteryBar);
+    handleClose("calendar_bar", setClockBar);
   }, []);
 
   let vol;
@@ -207,7 +219,16 @@ const Taskbar = () => {
           >
             <p>{lang}</p>
           </div>
-          <TrayClock />
+          <TrayClock
+            className="calendar_bar"
+            func={() => {
+              if (clockBar) {
+                setClockBar(false);
+                return;
+              }
+              setClockBar(true);
+            }}
+          />
           <TrayIcon
             icon={notif}
             className="taskbar_right"

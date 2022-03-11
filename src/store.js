@@ -133,6 +133,10 @@ const useStore = create((set) => ({
   setBatteryBar: (bol) => {
     set(() => ({ batteryBar: bol }));
   },
+  clockBar: false,
+  setClockBar: (bol) => {
+    set(() => ({ clockBar: bol }));
+  },
 }));
 
 export default useStore;
