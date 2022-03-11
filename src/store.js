@@ -117,6 +117,26 @@ const useStore = create((set) => ({
   setVolumeBar: (bol) => {
     set(() => ({ volumeBar: bol }));
   },
+  wifiBar: false,
+  setWifiBar: (bol) => {
+    set(() => ({ wifiBar: bol }));
+  },
+  lang: "ENG",
+  setLang: (l) => {
+    set(() => ({ lang: l }));
+  },
+  langOpen: false,
+  setLangOpen: (bol) => {
+    set(() => ({ langOpen: bol }));
+  },
+  batteryBar: false,
+  setBatteryBar: (bol) => {
+    set(() => ({ batteryBar: bol }));
+  },
+  clockBar: false,
+  setClockBar: (bol) => {
+    set(() => ({ clockBar: bol }));
+  },
 }));
 
 export default useStore;

@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="26" height="26">
+	<title>fwefefwefew</title>
+	<defs>
+		<image  width="20" height="20" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAAXNSR0IB2cksfwAAADNQTFRF5OTkz8/PxcXFurq62NjYv7+/m5ubiYmJoqKirq6uj4+P09PT3d3dtLS0lZWVqKioysrKMbNC8QAAABF0Uk5TAFDw/wD///////8QAP///6Bq+dyXAAAAr0lEQVR4nF2QWRLEIAhERaOtuOX+px2bWJPFDywaeI069znig38JR0xYJz+lAmiJIvUvtQ4UeaPqQD4+eK+68RJC3BrUQFJuo4rR6JSB6Te3qfV5RbmxE6chxsNcUExLzVBh9nVlbcSaJvkyEoSVJRAbod3WKDg4zEpA2k7KtRIR58ZyOpJI+FiVOlMnRhgqEeulYxkF12GbWmiuXc/MzHPiNOFqnSYm5vYR6wtL+wHwAwXIvDX/aAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="3" y="3" />
+</svg>
