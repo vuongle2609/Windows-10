@@ -70,6 +70,8 @@ const TrayClock = (props) => {
 const Taskbar = () => {
   const {
     setMenuOpen,
+    setMenuOpenConditional,
+    menuOpen,
     appN,
     setRightMenuTaskbar,
     RightMenuTaskbar,
@@ -115,7 +117,7 @@ const Taskbar = () => {
     handleClose("lang_bar", setLangOpen);
     handleClose("battery_bar", setBatteryBar);
     handleClose("calendar_bar", setClockBar);
-    handleClose("taskbar_menu", setMenuOpen);
+    handleClose("taskbar_menu", setMenuOpenConditional);
   }, []);
 
   let vol;
@@ -147,11 +149,17 @@ const Taskbar = () => {
   return (
     <>
       <div className="fixed bottom-0 left-0 right-0 h-[40px] bg-[#eeeeee] dark:bg-darkMode flex z-[999] justify-between items-center">
-        <div className="flex">
-          <div
-            className="h-[40px] w-[48px] flex justify-center items-center hover:bg-[#fcfcfc] taskbar_menu"
-            onClick={setMenuOpen}
-          >
+        <div
+          className="flex"
+          onClick={() => {
+            if (menuOpen) {
+              setMenuOpenConditional(false);
+              return;
+            }
+            setMenuOpenConditional(true);
+          }}
+        >
+          <div className="h-[40px] w-[48px] flex justify-center items-center hover:bg-[#fcfcfc] taskbar_menu">
             <i className="fa-brands fa-windows text-[18px]"></i>
           </div>
 

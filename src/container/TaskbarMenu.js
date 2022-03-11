@@ -40,11 +40,11 @@ const SideBarMenu = () => {
 };
 
 const MenuApp = (props) => {
-  const { onApp, setMenuOpen } = useStore();
+  const { onApp, setMenuOpenConditional } = useStore();
 
   const handleOpenApp = () => {
-    setMenuOpen(false);
     if (!onApp) {
+      setMenuOpenConditional(false);
       props.func();
     }
   };

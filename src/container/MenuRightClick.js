@@ -203,7 +203,12 @@ const MenuRightClick = () => {
     <div className="h-fit w-[256px] bg-[#eeeeee] shadow-md absolute shadow-black border-black border-[1px] right-menu hidden py-1">
       <MenuItemDrop name="View" trigger="view" />
       <MenuItemDrop name="Sort by" trigger="sort" />
-      <MenuItem name="Refresh" />
+      <MenuItem
+        name="Refresh"
+        func={() => {
+          console.log("what is wrong with you?...");
+        }}
+      />
       <div className="h-[1px] w-[90%] bg-black my-1 mx-3"></div>
       <MenuItem name="Paste" />
       <MenuItem name="Paste shortcut" />
