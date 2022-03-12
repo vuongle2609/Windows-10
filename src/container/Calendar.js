@@ -52,12 +52,19 @@ const DatePicker = (props) => {
     ];
 
     const handleDays = (daysArr) => {
-      daysArr.map((day) => {
+      daysArr.map((day, index) => {
         const dayContent = day.slice(0, 2);
-        document.querySelector(`[aria-label="${day}"]`).textContent =
-          dayContent;
+        document.querySelector(
+          `.react-calendar__month-view__weekdays__weekday:nth-child(${
+            index + 1
+          }) abbr`
+        ).textContent = dayContent;
         document
-          .querySelector(`[aria-label="${day}"]`)
+          .querySelector(
+            `.react-calendar__month-view__weekdays__weekday:nth-child(${
+              index + 1
+            }) abbr`
+          )
           .classList.add("justify-center", "flex");
       });
     };
