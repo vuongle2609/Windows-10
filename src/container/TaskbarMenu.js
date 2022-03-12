@@ -54,10 +54,10 @@ const MenuApp = (props) => {
       <img
         src={props.icon}
         alt=""
-        style={{ width: 26, height: 26 }}
+        style={{ width: 23, height: 23 }}
         className="mr-2"
       />
-      <p className="text-base">{props.name}</p>
+      <p className="text-[14px]">{props.name}</p>
     </div>
   );
 };
